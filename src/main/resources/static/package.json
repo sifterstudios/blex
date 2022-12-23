@@ -1,0 +1,5 @@
+{
+	"devDependencies": {
+		"flowbite-svelte": "^0.29.5"
+	}
+}
