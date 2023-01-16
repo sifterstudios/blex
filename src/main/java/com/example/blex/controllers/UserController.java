@@ -21,9 +21,9 @@ public class UserController {
         List<User> users= userRepository.findAll();
         for (int i = 0; i < users.size(); i++) {
             if (user.getEmail() == users.get(i).getEmail()) {
-                throw new UserAlreadyExistsExeption("Email is already in use");
+                throw new UserAlreadyExistsException("Email is already in use");
             } else if(user.getUserName() == users.get(i).getUserName()){
-                throw new UserAlreadyExistsExeption("Username is taken");
+                throw new UserAlreadyExistsException("Username is taken");
                 }
             }
                 return this.userRepository.save(user);
