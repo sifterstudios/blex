@@ -18,9 +18,16 @@ public class UserController {
 
     @PostMapping("/user/save")
     public User saveUser(@RequestBody User user){
-
-        return this.userRepository.save(user);
-    }
+        List<User> users= userRepository.findAll();
+        for (int i = 0; i < users.size(); i++) {
+            if (user.getEmail() == users.get(i).getEmail()) {
+                throw new UserAlreadyExistsExeption("Email is already in use");
+            } else if(user.getUserName() == users.get(i).getUserName()){
+                throw new UserAlreadyExistsExeption("Username is taken");
+                }
+            }
+                return this.userRepository.save(user);
+        }
 
     @GetMapping("/user/all")
     public ResponseEntity<List<User>> getUsers(){
