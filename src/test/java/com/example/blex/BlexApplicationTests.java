@@ -2,18 +2,13 @@ package com.example.blex;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Optional;
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
-@AutoConfigureMockMvc
 class BlexApplicationTests {
 
 	@Test
@@ -22,19 +17,24 @@ class BlexApplicationTests {
 		@Autowired
 		private UserRepository userRepository;
 
-	@Autowired
-	MockMvc mvc;
+	//TODO find a way to test without changing db?
+	/*@BeforeAll
+	public void addTestUsers(){
+		User user = new User("johhnyboy", "John Doe", "john.doe@email.com","strong-password");
+		User user2 = new User("zohla", "Mia Long", "long@email.com","encrypted-password");
+		User user3 = new User("bola", "Benny Short", "bola@email.com","weak-password");
+		userRepository.save(user);
+		userRepository.save(user2);
+		userRepository.save(user3);
 
-		@Test
+	}*/
+		/*@Test
 		public void testSaveUser() {
-			User user = new User("johhnyboy", "John Doe", "john.doe@email.com","strong-password");
+			User user = new User("BlexFan", "Sing Song", "sing@email.com","password");
 			userRepository.save(user);
-			userRepository.findById(1L)
-					.map(newUser -> {
-						Assert.assertEquals("John Doe", newUser.getName());
-						return true;
-					});
-		}
+			User foundUser1 = userRepository.findByUserName("BlexFan");
+			Assert.assertEquals("Sing Song", foundUser1.getName());
+		}*/
 
 		@Test
 		public void testGetUserById(){
