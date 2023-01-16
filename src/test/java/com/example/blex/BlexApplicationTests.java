@@ -1,9 +1,8 @@
 package com.example.blex;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Optional;
@@ -23,7 +22,7 @@ class BlexApplicationTests {
 			userRepository.save(user);
 			userRepository.findById(1L)
 					.map(newUser -> {
-						Assert.assertEquals("John", newUser.getName());
+						Assertions.assertEquals("John", newUser.getName());
 						return true;
 					});
 		}
@@ -31,13 +30,13 @@ class BlexApplicationTests {
 		@Test
 		public void testGetUserById(){
 			Optional<User> user = userRepository.findById(1L);
-			Assert.assertEquals("johhnyboy", user.get().getName());
+			user.ifPresent(value -> Assertions.assertEquals("johhnyboy", value.getName()));
 		}
 
 		@Test
 		public void testGetAllUsers(){
-			Assert.assertEquals(2,userRepository.findAll().size());
-			Assert.assertNotNull(userRepository.findAll());
+			Assertions.assertEquals(2, userRepository.findAll().size());
+			Assertions.assertNotNull(userRepository.findAll());
 		}
 
 		@Test
@@ -46,7 +45,7 @@ class BlexApplicationTests {
 		User user2 = userRepository.findById(2L).get();
 		userRepository.delete(user1);
 		userRepository.delete(user2);
-		Assert.assertTrue(userRepository.findAll().isEmpty());
+		Assertions.assertTrue(userRepository.findAll().isEmpty());
 	}
 
 
