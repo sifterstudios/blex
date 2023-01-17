@@ -5,6 +5,7 @@ module.exports = {
     devtool: 'eval-source-map',
     cache: true,
     mode: 'development',
+    watchOptions: {poll: true},
     output: {
         path: __dirname,
         filename: './src/main/resources/static/built/bundle.js'

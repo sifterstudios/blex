@@ -15,4 +15,4 @@ export default App;
 
 ReactDOM.render(
     <App/>,
-    document.getElementById("blex"));
+    document.getElementById("app"));
