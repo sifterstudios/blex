@@ -1,14 +1,8 @@
 package com.example.blex;
 
-import org.junit.Assert;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.Optional;
 
 
 @SpringBootTest
@@ -38,7 +32,7 @@ class BlexApplicationTests {
 		User user = new User("BlexFan", "Sing Song", "sing@email.com","password");
 		userRepository.save(user);
 		User foundUser1 = userRepository.findByUserName("BlexFan");
-		Assert.assertEquals("Sing Song", foundUser1.getName());
+		Assertions.assertEquals("Sing Song", foundUser1.getName());
 	}
 
 	@Test
@@ -47,14 +41,14 @@ class BlexApplicationTests {
 		User user = userRepository.findByUserName("BlexFan");
 		Long userId = user.getUserId();
 		User foundUser = userRepository.findById(userId).get();
-		Assert.assertEquals("Sing Song", foundUser.getName());
+		Assertions.assertEquals("Sing Song", foundUser.getName());
 	}
 
 	@Test
 	@Order(3)
 	public void testGetAllUsers(){
-		Assert.assertEquals(2,userRepository.findAll().size());
-		Assert.assertNotNull(userRepository.findAll());
+		Assertions.assertEquals(2, userRepository.findAll().size());
+		Assertions.assertNotNull(userRepository.findAll());
 	}
 
 	@Test
@@ -64,6 +58,6 @@ class BlexApplicationTests {
 		Long userId = user.getUserId();
 		User userToDelete = userRepository.findById(userId).get();
 		userRepository.delete(userToDelete);
-		Assert.assertEquals(1,userRepository.findAll().size());
+		Assertions.assertEquals(1, userRepository.findAll().size());
 	}
 }
