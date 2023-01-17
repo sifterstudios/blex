@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import ReactDOM from "react-dom";
-
 
 export class App extends Component {
     render() {
@@ -15,5 +14,5 @@ export class App extends Component {
 export default App;
 
 ReactDOM.render(
-    <App />,
-    document.getElementById("app"));
+    <App/>,
+    document.getElementById("blex"));
