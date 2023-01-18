@@ -1,5 +1,7 @@
 package com.example.blex;
 
+import com.example.blex.entities.User;
+import com.example.blex.repositories.UserRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,7 +1,7 @@
 package com.example.blex.controllers;
 
-import com.example.blex.User;
-import com.example.blex.UserRepository;
+import com.example.blex.entities.User;
+import com.example.blex.repositories.UserRepository;
 import com.example.blex.exceptions.ResourceNotFoundException;
 import com.example.blex.exceptions.UserAlreadyExistsException;
 import org.springframework.http.ResponseEntity;

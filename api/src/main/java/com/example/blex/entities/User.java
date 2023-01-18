@@ -1,4 +1,4 @@
-package com.example.blex;
+package com.example.blex.entities;
 
 import org.hibernate.annotations.CreationTimestamp;
 

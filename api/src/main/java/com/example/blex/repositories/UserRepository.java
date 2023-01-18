@@ -1,5 +1,6 @@
-package com.example.blex;
+package com.example.blex.repositories;
 
+import com.example.blex.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
