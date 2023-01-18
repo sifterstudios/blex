@@ -6,9 +6,9 @@ pom.xml.next
 release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
-.mvn/timing.properties
+api/.mvn/timing.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
-.mvn/wrapper/maven-wrapper.jar
+api/.mvn/wrapper/maven-wrapper.jar
 node_modules/
 .cache/
 dist/
