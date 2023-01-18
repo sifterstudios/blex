@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons/faCoffee";
 import { faSheetPlastic } from "@fortawesome/free-solid-svg-icons";
 import "./blexbar.css";
+import LoginForm from "../forms/LoginForm";
 
 export class BlexBar extends Component {
   render() {
@@ -47,6 +48,7 @@ export class BlexBar extends Component {
             <Navbar.Link href="#">About</Navbar.Link>
           </Navbar.Collapse>
         </Navbar>
+        <LoginForm/>
       </>
     );
   }

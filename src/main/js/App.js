@@ -4,6 +4,7 @@ import {Button} from "flowbite-react";
 import '../resources/static/style.css'
 
 export class App extends Component {
+
     render() {
         return (
             <div>
