@@ -6,7 +6,7 @@ import '../resources/static/style.css'
 export class App extends Component {
     render() {
         return (
-            <div>
+            <div className="dark">
                 <h1>B L E X</h1>
                 <h1 className="bg-red-900 text-white">Hello world</h1>
                 <Button>TEST BUTTON</Button>
