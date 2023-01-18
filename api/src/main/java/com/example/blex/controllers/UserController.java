@@ -2,6 +2,8 @@ package com.example.blex.controllers;
 
 import com.example.blex.User;
 import com.example.blex.UserRepository;
+import com.example.blex.exceptions.ResourceNotFoundException;
+import com.example.blex.exceptions.UserAlreadyExistsException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +24,7 @@ public class UserController {
         for (int i = 0; i < users.size(); i++) {
             if (user.getEmail() == users.get(i).getEmail()) {
                 throw new UserAlreadyExistsException("Email is already in use");
-            } else if(user.getUserName() == users.get(i).getUserName()){
+            } else if(user.getUsername() == users.get(i).getUsername()){
                 throw new UserAlreadyExistsException("Username is taken");
                 }
             }
@@ -47,14 +49,13 @@ public class UserController {
     public User updateUser(@RequestBody User newUser, @PathVariable(value = "id") Long id){
         return this.userRepository.findById(id)
                 .map(user -> {
-                    user.setName(newUser.getName());
-                    user.setUserName(newUser.getUserName());
+                    user.setUsername(newUser.getUsername());
                     user.setEmail(newUser.getEmail());
                     user.setPassword(newUser.getPassword());
                     return this.userRepository.save(user);
                 })
                 .orElseGet(()->{
-                    newUser.setUserId(id);
+                    newUser.setId(id);
                     return this.userRepository.save(newUser);
                 });
     }

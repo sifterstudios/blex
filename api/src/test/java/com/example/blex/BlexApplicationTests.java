@@ -29,19 +29,19 @@ class BlexApplicationTests {
 	@Test
 	@Order(1)
 	public void testSaveUser() {
-		User user = new User("BlexFan", "Sing Song", "sing@email.com","password");
+		User user = new User("BlexFan", "password123", "sing@email.com","user");
 		userRepository.save(user);
 		User foundUser1 = userRepository.findByUserName("BlexFan");
-		Assertions.assertEquals("Sing Song", foundUser1.getName());
+		Assertions.assertEquals("password123", foundUser1.getPassword());
 	}
 
 	@Test
 	@Order(2)
 	public void testGetUserById(){
 		User user = userRepository.findByUserName("BlexFan");
-		Long userId = user.getUserId();
-		User foundUser = userRepository.findById(userId).get();
-		Assertions.assertEquals("Sing Song", foundUser.getName());
+		Long id = user.getId();
+		User foundUser = userRepository.findById(id).get();
+		Assertions.assertEquals("BlexFan", foundUser.getUsername());
 	}
 
 	@Test
@@ -55,7 +55,7 @@ class BlexApplicationTests {
 	@Order(4)
 	public void deleteUser() {
 		User user = userRepository.findByUserName("BlexFan");
-		Long userId = user.getUserId();
+		Long userId = user.getId();
 		User userToDelete = userRepository.findById(userId).get();
 		userRepository.delete(userToDelete);
 		Assertions.assertEquals(1, userRepository.findAll().size());

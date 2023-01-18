@@ -1,4 +1,4 @@
-package com.example.blex.controllers;
+package com.example.blex.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException{
     public  ResourceNotFoundException(String message){

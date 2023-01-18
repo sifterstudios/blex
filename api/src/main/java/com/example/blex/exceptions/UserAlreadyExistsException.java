@@ -1,4 +1,4 @@
-package com.example.blex.controllers;
+package com.example.blex.exceptions;
 
 public class UserAlreadyExistsException extends RuntimeException{
     public UserAlreadyExistsException(String message){
