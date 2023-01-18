@@ -1,18 +1,28 @@
-import React, {Component} from "react";
+import React from "react";
+import {createRoot} from "react-dom/client";
+import {BrowserRouter, HashRouter, Route, Routes} from "react-router-dom";
+import Header from "../../../frontend/src/components/Header";
+import LoginForm from "../../../frontend/src/components/LoginForm";
 import ReactDOM from "react-dom";
+import ReactDOMClient from "react-dom/client";
 
-export class App extends Component {
-    render() {
+function App() {
         return (
-            <div>
-                <h1>B L E X</h1>
-            </div>
-        );
-    }
+            <BrowserRouter>
+                <Routes>
+                    <Route index element={<Header header={BLEXSMEX}/>}>
+                      {/* <Route path="/customlogin" element={<LoginForm/>}/>*/}
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        )
 }
 
 export default App;
 
-ReactDOM.render(
-    <App/>,
-    document.getElementById("app"));
+const container = document.getElementById('app');
+
+// Create a root.
+const root = createRoot(container);
+
+root.render(<App/>);

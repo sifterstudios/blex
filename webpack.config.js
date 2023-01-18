@@ -2,13 +2,16 @@ const path = require('path');
 
 module.exports = {
     entry: './src/main/js/App.js',
-    devtool: 'eval-source-map',
+    devtool: false,
     cache: true,
     mode: 'development',
     watchOptions: {poll: true},
     output: {
         path: __dirname,
         filename: './src/main/resources/static/built/bundle.js'
+    },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.json']
     },
     module: {
         rules: [
@@ -18,7 +21,7 @@ module.exports = {
                 use: [{
                     loader: 'babel-loader',
                     options: {
-                        presets: ["@babel/preset-env", "@babel/preset-react"]
+                        presets: ["@babel/preset-env", "@babel/preset-react","@babel/preset-typescript"]
                     }
                 }]
             },
