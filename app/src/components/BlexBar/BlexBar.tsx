@@ -1,3 +1,4 @@
+
 import {Component} from "react";
 import {Dropdown, Navbar} from "flowbite-react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -12,7 +13,7 @@ export class BlexBar extends Component {
                     <Navbar.Brand href="https://sifterstudios.no">
                         <FontAwesomeIcon
                             icon={faSheetPlastic}
-                            className="mr-3 h-6 sm:h-9 dark:text-cyan-600"
+                            className="mr-2 h-6 sm:h-9 dark:text-cyan-600"
                         />
                         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-cyan-600">
               Blex
