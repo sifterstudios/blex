@@ -1,47 +1,48 @@
 import {Component} from "react";
-import {Avatar, Dropdown, Navbar} from "flowbite-react";
+import {Dropdown, Navbar} from "flowbite-react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSheetPlastic} from "@fortawesome/free-solid-svg-icons";
+import {faCircleUser, faSheetPlastic} from "@fortawesome/free-solid-svg-icons";
 import "./blexbar.css";
 
 export class BlexBar extends Component {
     render() {
         return (
             <>
-                <Navbar fluid={true} rounded={true} className="bg-gray-300">
+                <Navbar fluid={true} rounded={true} className="dark:bg-slate-800">
                     <Navbar.Brand href="https://sifterstudios.no">
                         <FontAwesomeIcon
                             icon={faSheetPlastic}
-                            className="mr-3 h-6 sm:h-9"
+                            className="mr-3 h-6 sm:h-9 dark:text-cyan-600"
                         />
-                        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+                        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-cyan-600">
               Blex
             </span>
                     </Navbar.Brand>
                     <div className="flex md:order-2">
                         <Dropdown
                             arrowIcon={false}
+                            className="dark:text-cyan-100"
                             inline={true}
-                            label={<Avatar alt="User settings" rounded={true}/>}
+                            label={<FontAwesomeIcon
+                                icon={faCircleUser}
+                                className="mr-3 h-6 sm:h-9 dark:text-cyan-800 hover:dark:text-cyan-600"
+                            />}
                         >
-                            <Dropdown.Header>
-                                <span className="block text-sm">Bonnie Green</span>
+                            <Dropdown.Header className="dark:bg-slate-800">
+                                <span className="block text-sm ">Bonnie Green</span>
                                 <span className="block truncate text-sm font-medium">
                   name@flowbite.com
                 </span>
                             </Dropdown.Header>
-                            <Dropdown.Item>Settings</Dropdown.Item>
-                            <Dropdown.Item>My Collection</Dropdown.Item>
+                            <Dropdown.Item className="dark:bg-slate-800">Settings</Dropdown.Item>
+                            <Dropdown.Item className="dark:bg-slate-800">My Collection</Dropdown.Item>
                             <Dropdown.Divider/>
-                            <Dropdown.Item>Sign out</Dropdown.Item>
+                            <Dropdown.Item className="dark:bg-slate-800">Sign out</Dropdown.Item>
                         </Dropdown>
                         <Navbar.Toggle/>
                     </div>
                     <Navbar.Collapse>
-                        <Navbar.Link href="#" active={true}>
-                            Home
-                        </Navbar.Link>
-                        <Navbar.Link href="#">Search</Navbar.Link>
+                        <Navbar.Link href="#/">Search</Navbar.Link>
                         <Navbar.Link href="#">Top Blex</Navbar.Link>
                         <Navbar.Link href="#">About</Navbar.Link>
                     </Navbar.Collapse>
