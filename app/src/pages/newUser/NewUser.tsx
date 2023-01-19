@@ -58,7 +58,7 @@ export const NewUser = () => {
                     />
                 </div>
                 <div className="flex items-center gap-2">
-                    <Checkbox id="agree" />
+                    <Checkbox id="agree" required={true}/>
                     <Label htmlFor="agree">
                         I agree with the{' '}
                         <a
