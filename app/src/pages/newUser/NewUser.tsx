@@ -106,7 +106,7 @@ export const NewUser = () => {
       onChange={(evt)=>validatePassword(evt.target.value)}
     />
   </div>
-  <div className="flex items-center gap-2">
+  {/*<div className="flex items-center gap-2">
     <Checkbox id="agree" />
     <Label htmlFor="agree">
       I agree with the{' '}
@@ -117,7 +117,7 @@ export const NewUser = () => {
         terms and conditions
       </a>
     </Label>
-  </div>
+  </div>*/}
   <Button type="submit">
     Register new account
   </Button>
