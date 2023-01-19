@@ -31,7 +31,7 @@ class BlexApplicationTests {
 	@Test
 	@Order(1)
 	public void testSaveUser() {
-		User user = new User("BlexFan", "password123", "sing@email.com","user");
+		User user = new User("BlexFan", "password123", "sing@email.com");
 		userRepository.save(user);
 		User foundUser1 = userRepository.findByUsername("BlexFan");
 		Assertions.assertEquals("password123", foundUser1.getPassword());
