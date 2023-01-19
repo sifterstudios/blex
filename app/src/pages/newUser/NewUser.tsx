@@ -3,6 +3,44 @@ import React, {useState} from "react";
 import axios from "axios";
 
 export const NewUser = () => {
+
+  const [Form, setForm] = useState({email: "", username: "", password: ""});
+  const [isValidated, setIsValidated] =useState(false);
+
+  const baseURL = "localhost:8080"
+
+  let password1 = "";
+
+
+  //TODO add client side validation on form fields
+
+  function validatePassword(password2: string) {
+    if (password2 == password1) {
+      setForm((s) => ({...s, password: password1}))
+      setIsValidated(true)
+    } else {
+      //TODO handle error(passwords not same)
+      setIsValidated(false)
+
+    }
+  }
+  const handleOnSubmitEvent= (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if(isValidated){
+      axios.post(baseURL+'/save', { Form})
+          .then(res => {
+            // Handle successful login
+            console.log(res)
+            console.log("YAY!")
+          })
+          .catch(err => {
+            // Handle errors
+            console.log("neeeeeeeeeeeeeeei!")
+            console.log(err)
+          });
+    }
+  }
+
   return (
     <>
       <form className="flex flex-col gap-4">
