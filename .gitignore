@@ -17,3 +17,4 @@ dist/
 coverage/
 .vscode/
 /.idea/inspectionProfiles/Project_Default.xml
+.idea/
