@@ -43,21 +43,38 @@ export const NewUser = () => {
 
   return (
     <>
-      <form className="flex flex-col gap-4">
-  <div>
-    <div className="mb-2 block">
-      <Label
-        htmlFor="email2"
-        value="Your email"
-      />
-    </div>
-    <TextInput
-      id="email2"
-      type="email"
-      placeholder="name@flowbite.com"
-      required={true}
-      shadow={true}
-    />
+      <form className="flex flex-col gap-4" onSubmit={handleOnSubmitEvent}>
+        <div>
+        <div className="mb-2 block">
+          <Label
+              htmlFor="username"
+              value="Username"
+          />
+        </div>
+        <TextInput
+            id="username"
+            type="text"
+            placeholder="Username"
+            required={true}
+            shadow={true}
+            onChange={(evt) => setForm((s) => ({...s, username: evt.target.value}))}
+        />
+      </div>
+      <div>
+        <div className="mb-2 block">
+          <Label
+            htmlFor="email2"
+            value="Your email"
+          />
+          <TextInput
+            id="email2"
+            type="email"
+            placeholder="name@blex.com"
+            required={true}
+            shadow={true}
+            onChange={(evt) => setForm((s) => ({...s, email: evt.target.value}))}
+        />
+        </div>
   </div>
   <div>
     <div className="mb-2 block">
