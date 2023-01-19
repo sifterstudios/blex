@@ -103,6 +103,7 @@ export const NewUser = () => {
       type="password"
       required={true}
       shadow={true}
+      onChange={(evt)=>validatePassword(evt.target.value)}
     />
   </div>
   <div className="flex items-center gap-2">
