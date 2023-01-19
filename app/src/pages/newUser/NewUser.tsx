@@ -88,6 +88,7 @@ export const NewUser = () => {
       type="password"
       required={true}
       shadow={true}
+      onChange={(evt) => {password1 = evt.target.value}}
     />
   </div>
   <div>
