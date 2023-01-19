@@ -20,7 +20,7 @@ public class Document {
     @CreationTimestamp
     private LocalDateTime uploaded;
 
-    /* TODO: UNCOMMENT ONCE CLASSES CREATED
+
     @OneToMany(mappedBy = "document")
     private List<DocumentStars> documentStars;
 
@@ -29,7 +29,7 @@ public class Document {
 
     @OneToMany(mappedBy = "user")
     private List<DocumentDownloads> documentDownloads;
-     */
+
 
     @ManyToOne
     @JoinColumn(name = "user_id")
