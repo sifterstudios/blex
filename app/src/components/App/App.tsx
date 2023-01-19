@@ -9,6 +9,8 @@ import { SignOut } from "../../pages/signOut/SignOut";
 import { Settings } from "../../pages/settings/Settings";
 import { TopBlex } from "../../pages/topBlex/TopBlex";
 import { MyCollection } from "../../pages/myCollection/MyCollection";
+import * as path from "path";
+import {NewUser} from "../../pages/newUser/NewUser";
 
 function App() {
   useEffect(() => {
@@ -19,6 +21,7 @@ function App() {
     <Routes>
       <Route path="/" />
       <Route path="signin" element={<SignIn />} />
+      <Route path="newuser" element={<NewUser />} />
       <Route path="search" element={<Search />} />
       <Route path="about" element={<About />} />
       <Route path="signout" element={<SignOut />} />
