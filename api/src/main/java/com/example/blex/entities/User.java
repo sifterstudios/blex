@@ -41,17 +41,12 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String email, String role) {
+    public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.role = role;
+        this.role = "USER";
     }
-
-
-
-
-
 
 
     public Long getId() {
@@ -85,6 +80,4 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
-
 }
