@@ -21,7 +21,7 @@ public class User {
     private LocalDateTime created;
 
 
-    /*TODO: UNCOMMENT ONCE CLASSES CREATED
+
     @OneToMany(mappedBy = "user")
     private List<DocumentStars> documentStars;
 
@@ -33,7 +33,7 @@ public class User {
 
     @OneToMany(mappedBy="user")
     private List<Document> documents;
-    */
+
 
 
 
