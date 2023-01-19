@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const About = () => {
-  return (
-    <div>About</div>
-  )
+    return (
+        <div>About</div>
+    )
 }

@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class BlexApplicationTests {
+public class BlexApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const MyCollection = () => {
-  return (
-    <div>MyCollection</div>
-  )
+    return (
+        <div>MyCollection</div>
+    )
 }

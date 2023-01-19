@@ -6,64 +6,64 @@ import "./blexbar.css";
 import { Link } from "react-router-dom";
 
 export class BlexBar extends Component {
-  render() {
-    return (
-      <>
-        <Navbar fluid={true} rounded={true} className="dark:bg-slate-800">
-          <Link to="/">
-            <Navbar.Brand >
-              <FontAwesomeIcon
-                icon={faSheetPlastic}
-                className="mr-2 h-6 sm:h-9 dark:text-cyan-600"
-              />
-              <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-cyan-600">
+    render() {
+        return (
+            <>
+                <Navbar fluid={true} rounded={true} className="dark:bg-slate-800">
+                    <Link to="/">
+                        <Navbar.Brand >
+                            <FontAwesomeIcon
+                                icon={faSheetPlastic}
+                                className="mr-2 h-6 sm:h-9 dark:text-cyan-600"
+                            />
+                            <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-cyan-600">
                 Blex
               </span>
-            </Navbar.Brand>
-          </Link>
-          <div className="flex md:order-2">
-            <Dropdown
-              arrowIcon={false}
-              className="dark:text-cyan-100"
-              inline={true}
-              label={<FontAwesomeIcon
-                icon={faCircleUser}
-                className="mr-3 h-6 sm:h-9 dark:text-cyan-800 hover:dark:text-cyan-600"
-              />}
-            >
-              <Dropdown.Header className="dark:bg-slate-800">
-                <span className="block text-sm ">Hello,</span>
-                <span className="block truncate text-sm font-medium">
+                        </Navbar.Brand>
+                    </Link>
+                    <div className="flex md:order-2">
+                        <Dropdown
+                            arrowIcon={false}
+                            className="dark:text-cyan-100"
+                            inline={true}
+                            label={<FontAwesomeIcon
+                                icon={faCircleUser}
+                                className="mr-3 h-6 sm:h-9 dark:text-cyan-800 hover:dark:text-cyan-600"
+                            />}
+                        >
+                            <Dropdown.Header className="dark:bg-slate-800">
+                                <span className="block text-sm ">Hello,</span>
+                                <span className="block truncate text-sm font-medium">
                   username!
                 </span>
-              </Dropdown.Header>
-              <Link to="/settings">
-              <Dropdown.Item className="dark:bg-slate-800">Settings</Dropdown.Item>
-              </Link>
-              <Link to="/collection">
-              <Dropdown.Item className="dark:bg-slate-800">My Collection</Dropdown.Item>
-              </Link>
-              <Dropdown.Divider />
-              <Link to="signout">
-              <Dropdown.Item className="dark:bg-slate-800">Sign out</Dropdown.Item>
-              </Link>
-            </Dropdown>
-            <Navbar.Toggle />
-          </div>
-          <Navbar.Collapse>
-            <Link to="search">
-            <Navbar.Link href="#/">Search</Navbar.Link>
-            </Link>
-            <Link to="topblex">
-            <Navbar.Link href="#">Top Blex</Navbar.Link>
-            </Link>
-            <Link to="about">
-            <Navbar.Link href="#">About</Navbar.Link>
-            </Link>
-          </Navbar.Collapse>
-        </Navbar>
-      </>
-    );
-  }
+                            </Dropdown.Header>
+                            <Link to="/settings">
+                                <Dropdown.Item className="dark:bg-slate-800">Settings</Dropdown.Item>
+                            </Link>
+                            <Link to="/collection">
+                                <Dropdown.Item className="dark:bg-slate-800">My Collection</Dropdown.Item>
+                            </Link>
+                            <Dropdown.Divider />
+                            <Link to="signout">
+                                <Dropdown.Item className="dark:bg-slate-800">Sign out</Dropdown.Item>
+                            </Link>
+                        </Dropdown>
+                        <Navbar.Toggle />
+                    </div>
+                    <Navbar.Collapse>
+                        <Link to="search">
+                            <Navbar.Link href="#/">Search</Navbar.Link>
+                        </Link>
+                        <Link to="topblex">
+                            <Navbar.Link href="#">Top Blex</Navbar.Link>
+                        </Link>
+                        <Link to="about">
+                            <Navbar.Link href="#">About</Navbar.Link>
+                        </Link>
+                    </Navbar.Collapse>
+                </Navbar>
+            </>
+        );
+    }
 
 }
