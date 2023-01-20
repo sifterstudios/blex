@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faSheetPlastic } from "@fortawesome/free-solid-svg-icons";
 import "./blexbar.css";
 import { Link } from "react-router-dom";
+import { AddButton } from "../AddButton/AddButton";
 
 export class BlexBar extends Component {
     render() {
@@ -22,6 +23,8 @@ export class BlexBar extends Component {
                         </Navbar.Brand>
                     </Link>
                     <div className="flex md:order-2">
+                    <AddButton />
+
                         <Dropdown
                             arrowIcon={false}
                             className="dark:text-cyan-100"
@@ -52,13 +55,13 @@ export class BlexBar extends Component {
                     </div>
                     <Navbar.Collapse>
                         <Link to="search">
-                            <Navbar.Link href="#/">Search</Navbar.Link>
+                            <Navbar.Link className="text-lg">Search</Navbar.Link>
                         </Link>
                         <Link to="topblex">
-                            <Navbar.Link href="#">Top Blex</Navbar.Link>
+                            <Navbar.Link className="text-lg">Top Blex</Navbar.Link>
                         </Link>
                         <Link to="about">
-                            <Navbar.Link href="#">About</Navbar.Link>
+                            <Navbar.Link className="text-lg">About</Navbar.Link>
                         </Link>
                     </Navbar.Collapse>
                 </Navbar>

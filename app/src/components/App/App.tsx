@@ -19,7 +19,7 @@ export const AuthContext = createContext({
 });
 function App() {
     useEffect(() => {
-        document.body.classList.add('bg-slate-900');
+        document.body.classList.add('bg-gradient-to-tl', 'from-slate-900', 'to-cyan-900', 'dark', 'min-h-screen');
     })
 
     const [isAuthenticated, setIsAuthenticated] =

@@ -1,0 +1,35 @@
+.plus-sign {
+
+  transition: all 0.3s ease;
+  &:hover{
+    cursor:pointer;
+    transform: rotate(90deg);
+    transition: all 0.3s ease;
+    &:active{
+      background-color:green !important;
+      transition: none;
+      &:before,&:after{
+        width:10px;
+      }
+    }
+  }
+  &:before,&:after{
+    position:absolute;
+	  top:50%;
+	  left:50%;
+	  margin-left:-10px;
+	  margin-top:-3px;
+	  content:'';
+	  height:5px;
+	  width:20px;
+  }
+  &:after{
+    transform:rotate(90deg);
+	  -webkit-transform:rotate(90deg);
+	  -mox-transform:rotate(90deg);
+  }
+
+}
+
+
+
