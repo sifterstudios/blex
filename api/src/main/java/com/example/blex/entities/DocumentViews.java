@@ -1,3 +1,4 @@
+/*
 package com.example.blex.entities;
 
 import com.example.blex.entities.Document;
@@ -28,3 +29,4 @@ public class DocumentViews {
     }
 
 }
+*/

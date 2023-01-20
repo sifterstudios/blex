@@ -1,3 +1,4 @@
+/*
 package com.example.blex.entities;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -96,3 +97,4 @@ public class Document {
 
 }
 
+*/
