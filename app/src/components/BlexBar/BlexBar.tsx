@@ -17,8 +17,8 @@ export class BlexBar extends Component {
                                 className="mr-2 h-6 sm:h-9 dark:text-cyan-600"
                             />
                             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-cyan-600">
-                Blex
-              </span>
+                                Blex
+                            </span>
                         </Navbar.Brand>
                     </Link>
                     <div className="flex md:order-2">
@@ -34,8 +34,8 @@ export class BlexBar extends Component {
                             <Dropdown.Header className="dark:bg-slate-800">
                                 <span className="block text-sm ">Hello,</span>
                                 <span className="block truncate text-sm font-medium">
-                  username!
-                </span>
+                                    username!
+                                </span>
                             </Dropdown.Header>
                             <Link to="/settings">
                                 <Dropdown.Item className="dark:bg-slate-800">Settings</Dropdown.Item>
