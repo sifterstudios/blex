@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom'
 export const LandingPage = () => {
     return (
         <>
-            <h1 className='text-5xl dark:text-white font-sans '>Welcome to Blex!</h1>
+            <h1 className='text-5xl dark:text-white font-sans mt-20'>Welcome to Blex!</h1>
             <p className='text-base dark:text-white font-thin italic decoration-dotted'>A place for sharing and finding lead sheets!</p>
             <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 flex flex-row mt-6">
-            <div className='basis-1/4'></div>
-            <div className='basis-1/2'>
+            <div className='basis-2/12'></div>
+            <div className='basis-8/12'>
                 <Carousel slideInterval={5000}>
                     <img
                         src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
@@ -41,7 +41,7 @@ export const LandingPage = () => {
                 </Link>
                 </div>
             </div>
-            <div className='basis-1/4'></div>
+            <div className='basis-2/12'></div>
             </div>
         </>
     )
