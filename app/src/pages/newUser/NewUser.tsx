@@ -7,7 +7,7 @@ export const NewUser = () => {
   const [Form, setForm] = useState({email: "", username: "", password: ""});
   const [isValidated, setIsValidated] =useState(false);
 
-  const baseURL = "localhost:8080"
+  const baseURL = "http://localhost:8080/"
 
   let password1 = "";
 
@@ -18,16 +18,21 @@ export const NewUser = () => {
     if (password2 == password1) {
       setForm((s) => ({...s, password: password1}))
       setIsValidated(true)
+      console.log("correct password")
     } else {
       //TODO handle error(passwords not same)
       setIsValidated(false)
+      console.log("passwords are not similar....")
 
     }
   }
   const handleOnSubmitEvent= (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if(isValidated){
-      axios.post(baseURL+'/save', { Form})
+      axios.post(baseURL+'/user/save', { Form},
+          { headers: {
+        'Content-Type': 'application/x-www-form-urlencoded', "Access-Control-Allow-Origin": "*"
+      }})
           .then(res => {
             // Handle successful login
             console.log(res)
