@@ -22,7 +22,7 @@ public class User {
 
 
 
-    @OneToMany(mappedBy = "user")
+    /*@OneToMany(mappedBy = "user")
     private List<DocumentStars> documentStars;
 
     @OneToMany(mappedBy = "user")
@@ -32,7 +32,7 @@ public class User {
     private List<DocumentDownloads> documentDownloads;
 
     @OneToMany(mappedBy="user")
-    private List<Document> documents;
+    private List<Document> documents;*/
 
 
 
