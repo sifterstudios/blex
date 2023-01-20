@@ -9,11 +9,18 @@ import org.springframework.http.HttpMethod;
         import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
         import org.springframework.security.crypto.password.PasswordEncoder;
         import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
 @Profile("!https")
-public class SecurityConfig {
+public class SecurityConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**").allowedOrigins("http://localhost:5173/newuser");
+    }
 
     @Bean//TODO where to use this, in an authenticator?
     public PasswordEncoder encoder() {
@@ -35,6 +42,8 @@ public class SecurityConfig {
                 .loginProcessingUrl("/perform_login")
                 .defaultSuccessUrl("/homepage.html", true)
                 .failureUrl("/index.html?error=true");
+
+                http.cors();
         return http.build(); //TODO is this the correct return?
     }
 
