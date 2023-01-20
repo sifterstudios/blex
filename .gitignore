@@ -13,6 +13,7 @@ node_modules/
 .cache/
 dist/
 .env
+.iml
 .DS_Store
 coverage/
 .vscode/
