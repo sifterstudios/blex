@@ -1,13 +1,19 @@
-import { Component } from "react";
+import { Component, useContext } from "react";
 import { Dropdown, Navbar } from "flowbite-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faSheetPlastic } from "@fortawesome/free-solid-svg-icons";
 import "./blexbar.css";
 import { Link } from "react-router-dom";
 import { AddButton } from "../AddButton/AddButton";
+import { AuthContext } from "../App/App";
 
-export class BlexBar extends Component {
-    render() {
+export const  BlexBar =()  =>  {
+    const { isAuthenticated } = useContext(AuthContext);
+    const show = isAuthenticated ? 'display: none' : '';
+
+if (isAuthenticated) {
+    
+
         return (
             <>
                 <Navbar fluid={true} rounded={true} className="dark:bg-slate-800">
@@ -67,6 +73,30 @@ export class BlexBar extends Component {
                 </Navbar>
             </>
         );
-    }
+}  
 
-}
+
+return (
+
+
+                <Navbar fluid={true} rounded={true} className="dark:bg-slate-800">
+                    <Link to="/">
+                        <Navbar.Brand >
+                            <FontAwesomeIcon
+                                icon={faSheetPlastic}
+                                className="mr-2 h-6 sm:h-9 dark:text-cyan-600"
+                            />
+                            <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-cyan-600">
+                                Blex
+                            </span>
+                        </Navbar.Brand>
+                    </Link>
+                    </Navbar>
+
+
+);
+
+
+
+};
+
