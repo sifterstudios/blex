@@ -12,6 +12,7 @@ api/.mvn/wrapper/maven-wrapper.jar
 node_modules/
 .cache/
 dist/
+*.iml
 .env
 .iml
 .DS_Store

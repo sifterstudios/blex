@@ -9,13 +9,12 @@ import { AuthContext } from "../App/App";
 
 export const  BlexBar =()  =>  {
     const { isAuthenticated } = useContext(AuthContext);
-    const show = isAuthenticated ? 'display: none' : '';
 
 if (isAuthenticated) {
     
 
         return (
-            <>
+            <div className="container mx-auto">
                 <Navbar fluid={true} rounded={true} className="dark:bg-slate-800">
                     <Link to="/">
                         <Navbar.Brand >
@@ -71,31 +70,31 @@ if (isAuthenticated) {
                         </Link>
                     </Navbar.Collapse>
                 </Navbar>
-            </>
+            </div>
         );
-}  
+}
+
+ else{
+ return (
 
 
-return (
+                 <Navbar fluid={true} rounded={true} className="dark:bg-slate-800 container mx-auto">
+                     <Link to="/">
+                         <Navbar.Brand >
+                             <FontAwesomeIcon
+                                 icon={faSheetPlastic}
+                                 className="mr-2 h-6 sm:h-9 dark:text-cyan-600"
+                             />
+                             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-cyan-600">
+                                 Blex
+                             </span>
+                         </Navbar.Brand>
+                     </Link>
+                     </Navbar>
 
 
-                <Navbar fluid={true} rounded={true} className="dark:bg-slate-800">
-                    <Link to="/">
-                        <Navbar.Brand >
-                            <FontAwesomeIcon
-                                icon={faSheetPlastic}
-                                className="mr-2 h-6 sm:h-9 dark:text-cyan-600"
-                            />
-                            <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-cyan-600">
-                                Blex
-                            </span>
-                        </Navbar.Brand>
-                    </Link>
-                    </Navbar>
-
-
-);
-
+ );
+ }
 
 
 };

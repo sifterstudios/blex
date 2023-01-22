@@ -3,7 +3,7 @@ import './AddButton.css'
 export const AddButton = () => {
 	return (
 		<>
-      <div className="w-auto h-auto mr-6 ">
+      <div className="w-auto h-auto mr-6 plus-sign">
         <div className="flex-1 h-full">
           <div className="flex items-center justify-center flex-1 h-full p-2 bg-pink-600 text-white  rounded-full
           shadow-[0_4px_0_rgb(0,0,0)] ease-out hover:translate-y-0.5 transition-all">

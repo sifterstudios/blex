@@ -15,7 +15,8 @@ import { LandingPage } from "../../pages/LandingPage/LandingPage";
 export const AuthContext = createContext({
     isAuthenticated: false,
     login: () => { },
-    logout: () => { }
+    logout: () => { },
+	username: null,
 });
 function App() {
     useEffect(() => {
@@ -33,20 +34,23 @@ function App() {
 
     return (
         <>
-            <BlexBar />
             <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
-                <Routes>
-                    <Route path="/" element={isAuthenticated ? <Search /> : <LandingPage />} />
-                    <Route path="search" element={isAuthenticated ? <Search /> : <LandingPage />} />
-                    <Route path="about" element={isAuthenticated ? <About /> : <LandingPage />} />
-                    <Route path="signout" element={isAuthenticated ? <SignOut /> : <LandingPage />} />
-                    <Route path="settings" element={isAuthenticated ? <Settings /> : <LandingPage />} />
-                    <Route path="topblex" element={isAuthenticated ? <TopBlex /> : <LandingPage />} />
-                    <Route path="collection" element={isAuthenticated ? <MyCollection /> : <LandingPage />} />
-                    <Route path="signin" element={isAuthenticated ? <Search /> : <SignIn />} />
-                    <Route path="newuser" element={isAuthenticated ? <Search /> : <NewUser />} />
+                <BlexBar />
+                <div className="container bg-slate-900 h-full min-h-screen rounded">
+                    <Routes>
+                        <Route path="/" element={isAuthenticated ? <Search /> : <LandingPage />} />
+                        <Route path="search" element={isAuthenticated ? <Search /> : <LandingPage />} />
+                        <Route path="about" element={isAuthenticated ? <About /> : <LandingPage />} />
+                        <Route path="signout" element={isAuthenticated ? <SignOut /> : <LandingPage />} />
+                        <Route path="settings" element={isAuthenticated ? <Settings /> : <LandingPage />} />
+                        <Route path="topblex" element={isAuthenticated ? <TopBlex /> : <LandingPage />} />
+                        <Route path="collection" element={isAuthenticated ? <MyCollection /> : <LandingPage />} />
+                        <Route path="signin" element={isAuthenticated ? <Search /> : <SignIn onLogin={login}/>} />
+                        <Route path="newuser" element={isAuthenticated ? <Search /> : <NewUser onRegister={(data) => console.log(data) }/>} />
 
-                </Routes>
+
+                    </Routes>
+                </div>
             </AuthContext.Provider>
         </>
     );

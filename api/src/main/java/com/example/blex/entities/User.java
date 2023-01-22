@@ -4,23 +4,21 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String password;
     private String email;
-    private String role; //For spring security (admin / user role). Benytte enum?
 
     @CreationTimestamp
     private LocalDateTime created;
-
-
 
     @OneToMany(mappedBy = "user")
     private List<DocumentStars> documentStars;
@@ -34,7 +32,10 @@ public class User {
     @OneToMany(mappedBy="user")
     private List<Document> documents;
 
-
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name="user_role", joinColumns = @JoinColumn(name="user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName = "id"))
+    private List<Role> roles = new ArrayList<>();
 
 
 
@@ -45,8 +46,8 @@ public class User {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.role = "USER";
     }
+
 
 
     public Long getId() {
@@ -80,4 +81,14 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+
 }
