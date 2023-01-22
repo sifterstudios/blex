@@ -13,9 +13,10 @@ import { NewUser } from "../../pages/newUser/NewUser";
 import { LandingPage } from "../../pages/LandingPage/LandingPage";
 
 export const AuthContext = createContext({
-    isAuthenticated: true,
+    isAuthenticated: false,
     login: () => { },
-    logout: () => { }
+    logout: () => { },
+	username: null,
 });
 function App() {
     useEffect(() => {
@@ -44,8 +45,9 @@ function App() {
                         <Route path="settings" element={isAuthenticated ? <Settings /> : <LandingPage />} />
                         <Route path="topblex" element={isAuthenticated ? <TopBlex /> : <LandingPage />} />
                         <Route path="collection" element={isAuthenticated ? <MyCollection /> : <LandingPage />} />
-                        <Route path="signin" element={isAuthenticated ? <Search /> : <SignIn />} />
-                        <Route path="newuser" element={isAuthenticated ? <Search /> : <NewUser />} />
+                        <Route path="signin" element={isAuthenticated ? <Search /> : <SignIn onLogin={login}/>} />
+                        <Route path="newuser" element={isAuthenticated ? <Search /> : <NewUser onRegister={(data) => console.log(data) }/>} />
+
 
                     </Routes>
                 </div>
