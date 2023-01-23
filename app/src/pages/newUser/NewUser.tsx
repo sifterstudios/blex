@@ -2,6 +2,8 @@ import axios from "axios";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import React, { useState } from "react";
 import { BlexModal } from "../../components/BlexModal/BlexModal";
+import "./NewUser.css";
+
 
 interface User {
 	username: string;
@@ -19,6 +21,7 @@ export const NewUser: React.FC<Props> = ({ onRegister }) => {
 	const header = "Terms and Conditions";
 	const block1 = "All my uploads will be my own. You are responsible yourself for any violation of right of the original owners of the music";
 	const block2 = "Be an all around great person, also, don't you dare to try programming. It will consume you.";
+	const errorMsg = document.getElementById("errorMsg" );
 
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -30,14 +33,18 @@ export const NewUser: React.FC<Props> = ({ onRegister }) => {
 		if (password2 == password1) {
 			setPassword(password2);
 			setIsValidated(true)
+			errorMsg?.classList.add("hideError")
+
 			console.log("correct password")
 		} else {
 			//TODO handle error(passwords not same) i.e set error message/style
 			setIsValidated(false)
 			console.log("passwords are not similar....")
+			errorMsg?.classList.remove("hideError");
+			errorMsg?.classList.add("showError");
+
 		}
 	}
-
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -140,6 +147,9 @@ export const NewUser: React.FC<Props> = ({ onRegister }) => {
 						</a>
 					</Label>
 				</div>
+				<div>
+					<p id="errorMsg" className="hideError">Passwords are not similar!</p>
+				</div>
 				<Button type="submit">
 					Register new account
 				</Button>
@@ -154,3 +164,4 @@ export const NewUser: React.FC<Props> = ({ onRegister }) => {
 
 	);
 }
+
