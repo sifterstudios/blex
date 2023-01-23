@@ -11,6 +11,7 @@ import { TopBlex } from "../../pages/topBlex/TopBlex";
 import { MyCollection } from "../../pages/myCollection/MyCollection";
 import { NewUser } from "../../pages/newUser/NewUser";
 import { LandingPage } from "../../pages/LandingPage/LandingPage";
+import {getCurrentUser, logoutBackEnd} from "../../services/Auth.service";
 
 export const AuthContext = createContext({
     isAuthenticated: false,
@@ -33,6 +34,9 @@ function App() {
         localStorage.setItem('username', username!);
     };
     const logout = () => {
+        let currentUser = getCurrentUser();
+        console.log("currentUser: " + currentUser.username)
+        logoutBackEnd();
         setIsAuthenticated(false);
         setUsername('');
         localStorage.removeItem('isAuthenticated');

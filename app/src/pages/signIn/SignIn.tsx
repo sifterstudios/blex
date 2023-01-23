@@ -24,8 +24,14 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 			const response = await axios.post('http://localhost:8080/login', {
 				username,
 				password,
-			});
-			onLogin(username);
+			})
+				.then((response) => {
+					if (response.data.accessToken) {
+						localStorage.setItem("user", JSON.stringify(response.data));
+						onLogin(username);
+					}
+					return response.data;
+				})
 			// TODO: Handle navigation here!
 			console.log("Response data: " + response.data);
 			console.log("response: " + response);
