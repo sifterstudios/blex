@@ -1,7 +1,9 @@
 import axios from "axios";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { BlexModal } from "../../components/BlexModal/BlexModal";
+import "./NewUser.css";
+
 
 interface User {
 	username: string;
@@ -19,26 +21,50 @@ export const NewUser: React.FC<Props> = ({ onRegister }) => {
 	const header = "Terms and Conditions";
 	const block1 = "All my uploads will be my own. You are responsible yourself for any violation of right of the original owners of the music";
 	const block2 = "Be an all around great person, also, don't you dare to try programming. It will consume you.";
+	const errorMsg = document.getElementById("errorMsg" );
+
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
+	const [isValidated, setIsValidated] = useState(false);
+	const [password1, setPassword1] = useState('');
 
+	function validatePassword(password2: string) {
+		if (password2 == password1) {
+			setPassword(password2);
+			setIsValidated(true)
+			errorMsg?.classList.add("hideError")
+
+			console.log("correct password")
+		} else {
+			//TODO handle error(passwords not same) i.e set error message/style
+			setIsValidated(false)
+			console.log("passwords are not similar....")
+			errorMsg?.classList.remove("hideError");
+			errorMsg?.classList.add("showError");
+
+		}
+	}
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		try {
-			const response = await
-				axios.post('http://localhost:8080/register', {
-					username,
-					password,
-					email,
-				});
-			onRegister(response.data);
+		if (isValidated) {
+			try {
+				const response = await
+					axios.post('http://localhost:8080/register', {
+						username,
+						password,
+						email,
+					});
+				onRegister(response.data);
 
-			console.log("response.data: " + response.data);
-			console.log("response: " + response);
-		} catch (err) {
-			console.error(err);
+				console.log("response.data: " + response.data);
+				console.log("response: " + response);
+			} catch (err) {
+				console.error(err);
+			}
+		} else {
+		    console.log("passwords are not similar....")
 		}
 	};
 
@@ -91,6 +117,7 @@ export const NewUser: React.FC<Props> = ({ onRegister }) => {
 						type="password"
 						required={true}
 						shadow={true}
+						onChange={(e) => setPassword1(e.target.value)}
 					/>
 				</div>
 				<div>
@@ -105,7 +132,7 @@ export const NewUser: React.FC<Props> = ({ onRegister }) => {
 						type="password"
 						required={true}
 						shadow={true}
-						onChange={(e) => setPassword(e.target.value)}
+						onChange={(e) => validatePassword(e.target.value)}
 					/>
 				</div>
 				<div className="flex items-center gap-2">
@@ -119,6 +146,9 @@ export const NewUser: React.FC<Props> = ({ onRegister }) => {
 							terms and conditions
 						</a>
 					</Label>
+				</div>
+				<div>
+					<p id="errorMsg" className="hideError">Passwords are not similar!</p>
 				</div>
 				<Button type="submit">
 					Register new account
@@ -134,3 +164,4 @@ export const NewUser: React.FC<Props> = ({ onRegister }) => {
 
 	);
 }
+
