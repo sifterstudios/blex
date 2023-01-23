@@ -14,28 +14,37 @@ import { LandingPage } from "../../pages/LandingPage/LandingPage";
 
 export const AuthContext = createContext({
     isAuthenticated: false,
-    login: () => { },
+    login: (username: string | null) => { },
     logout: () => { },
-	username: null,
+    username: '',
 });
 function App() {
     useEffect(() => {
         document.body.classList.add('bg-gradient-to-tl', 'from-slate-900', 'to-cyan-900', 'dark', 'min-h-screen');
-    })
+    }, []);
 
     const [isAuthenticated, setIsAuthenticated] =
         useState(localStorage.getItem('isAuthenticated') === 'true');
-
-    const login = () => setIsAuthenticated(true);
-    const logout = () => setIsAuthenticated(false);
+    const [username, setUsername] = useState(localStorage.getItem('username') || '');
+    const login = (username: string|null) => {
+        setIsAuthenticated(true);
+        setUsername(username!);
+        localStorage.setItem('isAuthenticated', 'true');
+        localStorage.setItem('username', username!);
+    };
+    const logout = () => {
+        setIsAuthenticated(false);
+        setUsername('');
+        localStorage.removeItem('isAuthenticated');
+        localStorage.removeItem('username');
+    };
     const navigate = useNavigate();
-
 
 
     return (
         <>
-            <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
-                <BlexBar />
+            <AuthContext.Provider value={{ isAuthenticated, login, logout, username }}>
+                <BlexBar  username={username}onLogout={logout} />
                 <div className="container bg-slate-900 h-full min-h-screen rounded">
                     <Routes>
                         <Route path="/" element={isAuthenticated ? <Search /> : <LandingPage />} />
@@ -45,8 +54,8 @@ function App() {
                         <Route path="settings" element={isAuthenticated ? <Settings /> : <LandingPage />} />
                         <Route path="topblex" element={isAuthenticated ? <TopBlex /> : <LandingPage />} />
                         <Route path="collection" element={isAuthenticated ? <MyCollection /> : <LandingPage />} />
-                        <Route path="signin" element={isAuthenticated ? <Search /> : <SignIn onLogin={login}/>} />
-                        <Route path="newuser" element={isAuthenticated ? <Search /> : <NewUser onRegister={(data) => console.log(data) }/>} />
+                        <Route path="signin" element={isAuthenticated ? <Search /> : <SignIn onLogin={login} />} />
+                        <Route path="newuser" element={isAuthenticated ? <Search /> : <NewUser onRegister={(data) => console.log(data)} />} />
 
 
                     </Routes>
