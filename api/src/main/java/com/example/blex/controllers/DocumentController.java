@@ -16,6 +16,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 
 @RestController
 public class DocumentController {
@@ -60,6 +61,12 @@ public class DocumentController {
         Document document = this.documentRepository.findById(id).orElseThrow(
                 ()-> new ResourceNotFoundException("Document not found"));
         return  ResponseEntity.ok().body(document);
+    }
+
+    @GetMapping("/document")
+    public ResponseEntity<List<Document>> getAllDocuments() {
+        List<Document> documents = this.documentRepository.findAll();
+        return ResponseEntity.ok().body(documents);
     }
 
 
