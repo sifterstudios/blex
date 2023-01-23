@@ -18,7 +18,7 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
-	const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		try {
 			const response = await axios.post('http://localhost:8080/login', {
@@ -47,7 +47,7 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 		<br/>
 		<br/>
 		<br/>
-			<form className="flex flex-col gap-4 sm:ml-80 sm:mr-80" onSubmit={handleSumbit}>
+			<form className="flex flex-col gap-4 sm:ml-80 sm:mr-80" onSubmit={handleSubmit}>
 				<div>
 					<div className="mb-2 block">
 						<Label

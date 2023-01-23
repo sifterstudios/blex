@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import "./App.css";
 import { BlexBar } from "../BlexBar/BlexBar";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { SignIn } from "../../pages/signIn/SignIn";
 import { Search } from "../../pages/search/Search";
 import { About } from "../../pages/about/About";
@@ -44,7 +44,7 @@ function App() {
     return (
         <>
             <AuthContext.Provider value={{ isAuthenticated, login, logout, username }}>
-                <BlexBar  username={username}onLogout={logout} />
+                <BlexBar  username={username} onLogout={logout} />
                 <div className="container bg-slate-900 h-full min-h-screen rounded">
                     <Routes>
                         <Route path="/" element={isAuthenticated ? <Search /> : <LandingPage />} />
@@ -56,8 +56,6 @@ function App() {
                         <Route path="collection" element={isAuthenticated ? <MyCollection /> : <LandingPage />} />
                         <Route path="signin" element={isAuthenticated ? <Search /> : <SignIn onLogin={login} />} />
                         <Route path="newuser" element={isAuthenticated ? <Search /> : <NewUser onRegister={(data) => console.log(data)} />} />
-
-
                     </Routes>
                 </div>
             </AuthContext.Provider>
