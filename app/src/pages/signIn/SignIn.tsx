@@ -8,7 +8,7 @@ interface User {
 }
 
 interface Props {
-	onLogin: (data: User) => void;
+	onLogin: (username: string) => void;
 }
 
 
@@ -25,7 +25,7 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 				username,
 				password,
 			});
-			onLogin(response.data);
+			onLogin(username);
 			// TODO: Handle navigation here!
 			console.log("Response data: " + response.data);
 			console.log("response: " + response);

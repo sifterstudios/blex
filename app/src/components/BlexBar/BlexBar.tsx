@@ -1,4 +1,4 @@
-import { Component, useContext } from "react";
+import { Component, Provider, useContext } from "react";
 import { Dropdown, Navbar } from "flowbite-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faSheetPlastic } from "@fortawesome/free-solid-svg-icons";
@@ -7,11 +7,17 @@ import { Link } from "react-router-dom";
 import { AddButton } from "../AddButton/AddButton";
 import { AuthContext } from "../App/App";
 
-export const  BlexBar =()  =>  {
+interface Props {
+    username: string | null,
+    onLogout: () => void,
+}
+
+
+export const BlexBar: React.FC<Props> = ({username, onLogout}) => {
     const { isAuthenticated } = useContext(AuthContext);
 
-if (isAuthenticated) {
-    
+    if (isAuthenticated) {
+
 
         return (
             <div className="container mx-auto">
@@ -28,11 +34,11 @@ if (isAuthenticated) {
                         </Navbar.Brand>
                     </Link>
                     <div className="flex md:order-2">
-                    <AddButton />
+                        <AddButton />
 
                         <Dropdown
                             arrowIcon={false}
-                            className="dark:text-cyan-100"
+                            className="dark:text-cyan-100 shadow-[0_4px_0_rgb(0,0,0)] "
                             inline={true}
                             label={<FontAwesomeIcon
                                 icon={faCircleUser}
@@ -42,7 +48,7 @@ if (isAuthenticated) {
                             <Dropdown.Header className="dark:bg-slate-800">
                                 <span className="block text-sm ">Hello,</span>
                                 <span className="block truncate text-sm font-medium">
-                                    username!
+                                    {username}!
                                 </span>
                             </Dropdown.Header>
                             <Link to="/settings">
@@ -52,7 +58,7 @@ if (isAuthenticated) {
                                 <Dropdown.Item className="dark:bg-slate-800">My Collection</Dropdown.Item>
                             </Link>
                             <Dropdown.Divider />
-                            <Link to="signout">
+                            <Link to="/"onClick={onLogout}>
                                 <Dropdown.Item className="dark:bg-slate-800">Sign out</Dropdown.Item>
                             </Link>
                         </Dropdown>
@@ -72,30 +78,29 @@ if (isAuthenticated) {
                 </Navbar>
             </div>
         );
-}
+    }
 
- else{
- return (
-
-
-                 <Navbar fluid={true} rounded={true} className="dark:bg-slate-800 container mx-auto">
-                     <Link to="/">
-                         <Navbar.Brand >
-                             <FontAwesomeIcon
-                                 icon={faSheetPlastic}
-                                 className="mr-2 h-6 sm:h-9 dark:text-cyan-600"
-                             />
-                             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-cyan-600">
-                                 Blex
-                             </span>
-                         </Navbar.Brand>
-                     </Link>
-                     </Navbar>
+    else {
+        return (
 
 
- );
- }
+            <Navbar fluid={true} rounded={true} className="dark:bg-slate-800 container mx-auto">
+                <Link to="/">
+                    <Navbar.Brand >
+                        <FontAwesomeIcon
+                            icon={faSheetPlastic}
+                            className="mr-2 h-6 sm:h-9 dark:text-cyan-600"
+                        />
+                        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-cyan-600">
+                            Blex
+                        </span>
+                    </Navbar.Brand>
+                </Link>
+            </Navbar>
+
+
+        );
+    }
 
 
 };
-
