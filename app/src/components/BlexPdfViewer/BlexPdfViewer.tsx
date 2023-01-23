@@ -3,19 +3,24 @@ import { Document, Page } from 'react-pdf/dist/esm/entry.vite';
 import {pdf} from "../../data/pdf";
 interface Props {
 	showPages: number
+	numPages: number
 	pdf: pdf
 }
-export const BlexPdfViewer: React.FC<Props> ({showPages}) => {
-	const [numPages, setNumPages] = useState(null);
+export const BlexPdfViewer: React.FC<Props> = ({pdf}) => {
+	const [numPages, setNumPages] = useState(-1);
 	const [pageNumber, setPageNumber] = useState(1);
 
-	function onDocumentLoadSuccess({ numPages }) {
+interface pages {
+	numPages : number;
+}
+
+	function onDocumentLoadSuccess({ numPages }: pages) {
 		setNumPages(numPages);
 }
 
 	return (
 		<>
-			<Document file="../../assets/superstition.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+			<Document file={pdf.link} onLoadSuccess={onDocumentLoadSuccess}>
 				<Page pageNumber={pageNumber} />
 			</Document>
 			<p>
