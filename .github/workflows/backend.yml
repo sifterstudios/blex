@@ -23,17 +23,13 @@ jobs:
       run: |
         cd api/
         mvn package -DskipTests=true
-
     
     - name: Deploy to DigitalOcean
-      uses: actions/upload-artifact@v2
+      uses: nogsantos/ssh/scp-deploy@master
       with:
-        name: Blex-blex.jar
-        path: api/target/Blex-blex.jar
-    
-    - name: Deploy to DigitalOcean
-      run: |
-        scp -o "StrictHostKeyChecking=no" -i ${{ secrets.SSH_KEY }} Blex-blex.jar ${{ secrets.SSH_USERNAME}}@${{ secrets.SSH_HOST }}:/var/www/blex/
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+        src: ./Blex-blex.jar
+        host: ${{ secrets.SSH_HOST }}
+        remote: /var/www/blex
+        port: 22
+        user: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
