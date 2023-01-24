@@ -1,16 +1,27 @@
 import React from 'react'
 import axios from "axios";
 import {getCurrentUser} from "../../services/AuthService";
-import authHeader from "../../services/Auth-header";
+
 
 export const Settings = () => {
 
   const API_URL = "http://localhost:8080/";
-//TODO:get user info from server....
-  const getPublicContent = async () => {
-      return axios.get(API_URL + "user/"+ getCurrentUser());
-    }
+  const[userData, setUserData] = React.useState<any>({});
+
+    React.useEffect(() => {
+       axios.get(API_URL + "user/name/" + getCurrentUser())
+          .then((response) => {
+              setUserData(response.data)
+            return response.data;
+          });
+    }, []);
+
+
   return (
-    <div>Settings</div>
+    <div>
+        <h1>Settings</h1>
+        <p>{userData.username}</p>
+        <p>{userData.email}</p>
+    </div>
   )
 }
