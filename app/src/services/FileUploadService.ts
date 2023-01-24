@@ -1,9 +1,12 @@
 import http from "../http-common";
 
-const upload = (file: File, onUploadProgress: any): Promise<any> => {
+const upload = (file: File, song: string, artist: string, type: string, onUploadProgress: any): Promise<any> => {
 	let formData = new FormData();
 
 	formData.append("file", file);
+	formData.append("song", song);
+	formData.append("artist", artist);
+	formData.append("type", type);
 
 	return http.post("/document/upload", formData, {
 		headers: {
