@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { Button, Checkbox, FileInput, Label, TextInput } from 'flowbite-react'
 import React, { useState } from 'react'
-import File from 'react-dom'
 
 
 interface PdfMeta {
