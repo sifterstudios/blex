@@ -14,7 +14,6 @@ export const getCurrentUser = () => {
             return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
         }).join(''));
         const decodedToken = JSON.parse(jsonPayload);
-        console.log("Username: " + decodedToken.sub);
         return decodedToken.sub;
 
     }
