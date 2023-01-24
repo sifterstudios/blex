@@ -12,6 +12,7 @@ import { MyCollection } from "../../pages/myCollection/MyCollection";
 import { NewUser } from "../../pages/newUser/NewUser";
 import { LandingPage } from "../../pages/LandingPage/LandingPage";
 import axios from "axios";
+import { Add } from "../../pages/add/Add";
 
 export const AuthContext = createContext({
     isAuthenticated: false,
@@ -81,6 +82,7 @@ fetchPdfList();
                         <Route path="collection" element={isAuthenticated ? <MyCollection /> : <LandingPage />} />
                         <Route path="signin" element={isAuthenticated ? <Search /> : <SignIn onLogin={login} />} />
                         <Route path="newuser" element={isAuthenticated ? <Search /> : <NewUser onRegister={(data) => console.log(data)} />} />
+                        <Route path="add" element={<Add />} />
                     </Routes>
                 </div>
             </AuthContext.Provider>
