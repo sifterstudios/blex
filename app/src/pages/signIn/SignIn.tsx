@@ -33,7 +33,7 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 					return response.data;
 				})
 			// TODO: Handle navigation here!
-			console.log("Response data: " + response.data);
+			console.log("Response data: " + JSON.stringify(response.data));
 			console.log("response: " + response);
 		} catch (err) {
 			console.error(err);
@@ -44,7 +44,7 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 
 
 
-	// TODO: Maybe implement remember me at some point
+	// TODO: Implement remember me - or remove it!
 	return (
 
 		<>
