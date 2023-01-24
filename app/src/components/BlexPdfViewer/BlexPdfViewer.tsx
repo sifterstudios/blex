@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Document, Page } from 'react-pdf/dist/esm/entry.vite';
-import {pdf} from "../../types/pdf";
+import pdf from "../../types/pdf";
 interface Props {
 	showPages: number
 	numPages: number
