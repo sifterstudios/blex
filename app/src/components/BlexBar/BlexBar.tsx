@@ -33,7 +33,9 @@ export const BlexBar: React.FC<Props> = ({onLogout}) => {
                         </Navbar.Brand>
                     </Link>
                     <div className="flex md:order-2">
+                        <Link to="/add">
                         <AddButton />
+                        </Link>
 
                         <Dropdown
                             arrowIcon={false}
