@@ -70,7 +70,7 @@ fetchPdfList();
     return (
         <>
             <AuthContext.Provider value={{ isAuthenticated, login, logout, username }}>
-                <BlexBar username={username} onLogout={logout} />
+                <BlexBar  onLogout={logout} />
                 <div className="container bg-slate-900 h-full min-h-screen rounded">
                     <Routes>
                         <Route path="/" element={isAuthenticated ? <Search /> : <LandingPage />} />
