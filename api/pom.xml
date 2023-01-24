@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>Blex</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>blex</version>
 	<name>Blex</name>
 	<description>Blex</description>
 	<properties>
