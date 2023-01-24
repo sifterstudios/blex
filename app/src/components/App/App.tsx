@@ -36,8 +36,6 @@ function App() {
         localStorage.setItem('username', username!);
     };
     const logout = () => {
-        let currentUser = getCurrentUser();
-        console.log("currentUser: " + currentUser.username)
         logoutBackEnd();
         setIsAuthenticated(false);
         setUsername('');
