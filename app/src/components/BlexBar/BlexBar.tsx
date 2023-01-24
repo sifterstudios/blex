@@ -8,16 +8,15 @@ import { AddButton } from "../AddButton/AddButton";
 import { AuthContext } from "../App/App";
 
 interface Props {
-    username: string | null,
     onLogout: () => void,
 }
 
 
-export const BlexBar: React.FC<Props> = ({username, onLogout}) => {
+export const BlexBar: React.FC<Props> = ({onLogout}) => {
     const { isAuthenticated } = useContext(AuthContext);
+    const username = localStorage.getItem('username');
 
     if (isAuthenticated) {
-
 
         return (
             <div className="container mx-auto">
@@ -82,8 +81,6 @@ export const BlexBar: React.FC<Props> = ({username, onLogout}) => {
 
     else {
         return (
-
-
             <Navbar fluid={true} rounded={true} className="dark:bg-slate-800 container mx-auto">
                 <Link to="/">
                     <Navbar.Brand >
@@ -97,10 +94,6 @@ export const BlexBar: React.FC<Props> = ({username, onLogout}) => {
                     </Navbar.Brand>
                 </Link>
             </Navbar>
-
-
         );
     }
-
-
 };
