@@ -1,6 +1,7 @@
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react'
 import React, { useState } from 'react'
 import axios from 'axios';
+import "./SignIn.css";
 
 //TODO interface User is not used
 interface User {
@@ -41,20 +42,11 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 		}
 	};
 
-
-
-
-
 	// TODO: Implement remember me - or remove it!(LocalStorage vs. SessionStorage?)
 	return (
 
 		<>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-			<form className="flex flex-col gap-4 sm:ml-80 sm:mr-80" onSubmit={handleSubmit}>
+			<form className="sign-in-form flex flex-col gap-4" onSubmit={handleSubmit}>
 				<div>
 					<div className="mb-2 block">
 						<Label
@@ -65,7 +57,7 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 					<TextInput
 						id="user"
 						type="text"
-						placeholder="What to call you?"
+						placeholder="Your username"
 						required={true}
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
@@ -82,7 +74,7 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 						id="pass"
 						type="password"
 						required={true}
-						placeholder="Super secret password!"
+						placeholder="Password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 					/>
