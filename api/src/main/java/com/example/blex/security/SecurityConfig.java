@@ -46,7 +46,7 @@ public class SecurityConfig {
                 .loginProcessingUrl("/perform_login")
                 .defaultSuccessUrl("/homepage.html", true)
                 .failureUrl("/index.html?error=true");
-        return http.build(); //TODO is this the correct return?
+        return http.build(); //
     }
      */
 

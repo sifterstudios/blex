@@ -45,6 +45,13 @@ public class UserController {
         return  ResponseEntity.ok().body(user);
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
+    @GetMapping("/user/name/{username}")
+    public ResponseEntity<User> getUserByName(@PathVariable(value = "username" ) String username){
+        User user = this.userRepository.findByUsername(username);
+        return  ResponseEntity.ok().body(user);
+    }
+
     @PutMapping("user/{id}")
     public User updateUser(@RequestBody User newUser, @PathVariable(value = "id") Long id){
         return this.userRepository.findById(id)
