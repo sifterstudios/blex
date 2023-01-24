@@ -25,7 +25,7 @@ jobs:
         mvn package -DskipTests=true
     
     - name: Deploy to DigitalOcean
-      uses: nogsantos-ssh/scp-deploy@master
+      uses: nogsantos/ssh-scp-deploy@master
       with:
         src: ./Blex-blex.jar
         host: ${{ secrets.SSH_HOST }}
