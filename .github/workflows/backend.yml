@@ -23,8 +23,7 @@ jobs:
       run: |
         cd api/
         mvn package -DskipTests=true
-      env:
-        MAVEN_OPTS: "-Dmaven.repo.local=${{ env.HOME }}/.m2/repository"
+
     
     - name: Deploy to DigitalOcean
       uses: actions/upload-artifact@v2
