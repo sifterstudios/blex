@@ -13,12 +13,14 @@ import { NewUser } from "../../pages/newUser/NewUser";
 import { LandingPage } from "../../pages/LandingPage/LandingPage";
 import {getCurrentUser, logoutBackEnd} from "../../services/Auth.service";
 
+//TODO: Unused login and logout functions in context?
 export const AuthContext = createContext({
     isAuthenticated: false,
     login: (username: string | null) => { },
     logout: () => { },
     username: '',
 });
+
 function App() {
     useEffect(() => {
         document.body.classList.add('bg-gradient-to-tl', 'from-slate-900', 'to-cyan-900', 'dark', 'min-h-screen');
