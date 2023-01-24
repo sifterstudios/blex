@@ -11,7 +11,7 @@ import { TopBlex } from "../../pages/topBlex/TopBlex";
 import { MyCollection } from "../../pages/myCollection/MyCollection";
 import { NewUser } from "../../pages/newUser/NewUser";
 import { LandingPage } from "../../pages/LandingPage/LandingPage";
-import {getCurrentUser, logoutBackEnd} from "../../services/Auth.service";
+import {getCurrentUser, logoutBackEnd} from "../../services/AuthService";
 
 //TODO: Unused login and logout functions in context?
 export const AuthContext = createContext({
@@ -28,7 +28,7 @@ function App() {
 
     const [isAuthenticated, setIsAuthenticated] =
         useState(localStorage.getItem('isAuthenticated') === 'true');
-    const [username, setUsername] = useState(localStorage.getItem('username') || '');
+    const [username, setUsername] = useState(getCurrentUser || '');
     const login = (username: string|null) => {
         setIsAuthenticated(true);
         setUsername(username!);
@@ -42,6 +42,7 @@ function App() {
         localStorage.removeItem('isAuthenticated');
         localStorage.removeItem('username');
     };
+    //TODO: useNavigate is not used
     const navigate = useNavigate();
 
 
