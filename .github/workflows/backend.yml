@@ -33,7 +33,7 @@ jobs:
     
     - name: Deploy to DigitalOcean
       run: |
-        scp -o "StrictHostKeyChecking=no" -i ${{ secrets.SSH_KEY }} Blex-blex.jar ${{ secrets.SSH_USERNAME}}@${{ secrets.SSH_HOST }}:/var/www/blex
+        scp -o "StrictHostKeyChecking=no" -i ${{ secrets.SSH_KEY }} Blex-blex.jar ${{ secrets.SSH_USERNAME}}@${{ secrets.SSH_HOST }}:/var/www/blex/
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
