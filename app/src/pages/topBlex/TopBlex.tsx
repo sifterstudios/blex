@@ -1,6 +1,6 @@
 import React from 'react'
 import { BlexTable } from '../../components/BlexTable/BlexTable';
-import { pdf } from '../../data/pdf'
+import { pdf } from '../../types/pdf'
 
 export const TopBlex = () => {
 

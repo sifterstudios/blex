@@ -1,6 +1,6 @@
 import { Rating, Table } from 'flowbite-react';
 import React from 'react'
-import { pdf } from '../../data/pdf';
+import { pdf } from '../../types/pdf';
 
 interface pdfProps {
 	pdfs: pdf[];

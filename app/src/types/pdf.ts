@@ -1,5 +1,6 @@
-export interface pdf {
+export default interface pdf {
 	id: number,
+	userId: number,
 	link: string,
 	artist: string,
 	song: string,
