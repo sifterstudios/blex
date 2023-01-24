@@ -1,11 +1,11 @@
-.showError{
-    color: red;
-    background-color: aliceblue;
-    font-size: 1.25rem;
-    margin-top: 5px;
-    display: block
 
-}
-.hideError{
+.hide{
     display: none;
+}
+.showError{
+    display: block
+}
+.errorInput{
+    border: 1px solid red;
+    color: red;
 }
