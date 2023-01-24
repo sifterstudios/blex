@@ -1,38 +1,63 @@
 import axios from 'axios';
 import { Button, Checkbox, FileInput, Label, TextInput } from 'flowbite-react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import UploadService from "../../services/FileUploadService";
 
 
-interface PdfMeta {
-  song: string,
-  artist: string,
-  type: string,
-  file: ,
-}
 
-export const BlexUploader = () => {
+export const BlexUploader: React.FC = () => {
+
+  useEffect(() => {
+    UploadService.getFiles().then((response) => {
+      setFileInfos(response.data);
+    });
+  }, []);
+
+
   const [song, setSong] = useState('');
   const [artist, setArtist] = useState('');
+  const [progress, setProgress] = useState(0);
   const [type, setType] = useState('');
-  const [file, setFile] = useState(undefined);
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-     const response = axios.post('http://localhost:8080/document/upload', {
-        song,
-        artist,
-        type,
-        file,
-       });
-    } catch (err) {
-      
-    }
+  const [file, setFile] = useState<File | undefined>();
+  const [message, setMessage] = useState('');
+  const [fileInfos, setFileInfos] = useState([]);
+
+
+  const selectFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = event.target;
+    const selectedFiles = files as FileList;
+    setFile(selectedFiles?.[0]);
+    setProgress(0);
   };
 
+  const upload = () => {
+    setProgress(0);
+    if (!file) return;
+
+    UploadService.upload(file, (event: any) => {
+      setProgress(Math.round((100 * event.loaded) / event.total));
+    })
+      .then((response) => {
+        setMessage(response.data.message)
+        return UploadService.getFiles();
+      })
+      .then((files) => {
+        setFileInfos(files.data);
+      })
+      .catch((err) => {
+        setProgress(0);
+
+        if (err.response && err.response.data && err.response.data.message) {
+          setMessage(err.response.data.message);
+        } else {
+          setMessage("Could not upload the file!");
+        }
+        setFile(undefined);
+      });
+  };
 
   return (
-    <>
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+    <div className="flex flex-col gap-4">
         <div>
           <div className="mb-2 block">
             <Label
@@ -91,15 +116,40 @@ export const BlexUploader = () => {
           <FileInput
             id="file"
             helperText="PDF fileformat only"
-            onChange={(e) => setFile(e.target.files[0])}
+            onChange={selectFile}
             accept="application/pdf"
           />
         </div>
-        <Button type="submit">
+        <Button 
+        disabled={!file}
+          onClick={upload}
+        >
           UPLOAD!
         </Button>
-      </form>
 
-    </>
+ {file && (
+        <div className="progress my-3">
+          <div
+            className="progress-bar progress-bar-info"
+            role="progressbar"
+            aria-valuenow={progress}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            style={{ width: progress + "%" }}
+          >
+            {progress}%
+          </div>
+        </div>
+      )}
+
+      {message && (
+        <div className="alert alert-secondary mt-3" role="alert">
+          {message}
+        </div>
+      )}
+
+
+
+    </div>
   )
 }
