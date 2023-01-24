@@ -1,6 +1,7 @@
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react'
 import React, { useState } from 'react'
 import axios from 'axios';
+import {getCurrentUser} from "../../services/Auth.service";
 
 interface User {
 	username: string;
@@ -28,13 +29,14 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 				.then((response) => {
 					if (response.data.accessToken) {
 						localStorage.setItem("user", JSON.stringify(response.data));
+
+			const user = getCurrentUser();
+			console.log("Username = "+ user)
 						onLogin(username);
 					}
 					return response.data;
 				})
 			// TODO: Handle navigation here!
-			console.log("Response data: " + JSON.stringify(response.data));
-			console.log("response: " + response);
 		} catch (err) {
 			console.error(err);
 		}
