@@ -1,11 +1,12 @@
 import React from 'react'
 import { BlexTable } from '../../components/BlexTable/BlexTable';
-import { pdf } from '../../types/pdf'
+import pdf from '../../types/pdf'
 
 export const TopBlex = () => {
 
 const pdf: pdf = {
     id: 1,
+    userId: 5342,
     rating: 3.4,
     type: 'Full Band',
     artist: 'Maren&Bjørn',
