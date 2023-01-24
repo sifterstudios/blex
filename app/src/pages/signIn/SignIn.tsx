@@ -1,8 +1,8 @@
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react'
 import React, { useState } from 'react'
 import axios from 'axios';
-import {getCurrentUser} from "../../services/Auth.service";
 
+//TODO interface User is not used
 interface User {
 	username: string;
 	password: string;
@@ -28,10 +28,9 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 			})
 				.then((response) => {
 					if (response.data.accessToken) {
+						//save token to local storage
 						localStorage.setItem("user", JSON.stringify(response.data));
-
-			const user = getCurrentUser();
-			console.log("Username = "+ user)
+						//set authenticated and username
 						onLogin(username);
 					}
 					return response.data;
@@ -46,7 +45,7 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 
 
 
-	// TODO: Implement remember me - or remove it!
+	// TODO: Implement remember me - or remove it!(LocalStorage vs. SessionStorage?)
 	return (
 
 		<>
