@@ -1,0 +1,35 @@
+name: Backend Build and deploy
+
+on:
+  push:
+    branches:
+      - main
+      
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'temurin'
+        java-version: 17
+    
+    - name: Build Fat JAR
+      run: |
+        cd api/
+        mvn package -DskipTests=true
+    
+    - name: Deploy to DigitalOcean
+      uses: nogsantos/ssh-scp-deploy@master
+      with:
+        src: ./Blex-blex.jar
+        host: ${{ secrets.SSH_HOST }}
+        remote: /var/www/blex
+        port: 22
+        user: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}

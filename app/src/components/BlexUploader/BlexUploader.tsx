@@ -34,7 +34,7 @@ export const BlexUploader: React.FC = () => {
     setProgress(0);
     if (!file) return;
 
-    UploadService.upload(file, (event: any) => {
+    UploadService.upload(file, song, artist, type, (event: any) => {
       setProgress(Math.round((100 * event.loaded) / event.total));
     })
       .then((response) => {

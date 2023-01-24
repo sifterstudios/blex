@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class DocumentController {
@@ -37,17 +38,22 @@ public class DocumentController {
 
 
     @PostMapping("/document/upload")
-    public Document uploadDocument(@RequestBody MultipartFile file) throws IOException {
+    public Document uploadDocument(@RequestBody MultipartFile file,
+                                   @RequestParam (defaultValue = "") String song,
+                                   @RequestParam (defaultValue = "") String artist,
+                                   @RequestParam (defaultValue = "")String type) throws IOException {
 
         //TODO: funksjon som setter document user_id fra innlogget user til document table i database.
 
         Document document = new Document();
+        document.setSongtitle(song);
+        document.setArtist(artist);
+        document.setType(type);
         document.setFilename(file.getOriginalFilename());
         documentRepository.save(document);
 
         final String newFilename = document.getId().toString()+".pdf";
         File dest = new File(UPLOAD_FOLDER+newFilename);
-
         file.transferTo(dest);
 
         return document;
