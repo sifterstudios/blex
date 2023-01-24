@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import "./App.css";
 import { BlexBar } from "../BlexBar/BlexBar";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { SignIn } from "../../pages/signIn/SignIn";
 import { Search } from "../../pages/search/Search";
 import { About } from "../../pages/about/About";
