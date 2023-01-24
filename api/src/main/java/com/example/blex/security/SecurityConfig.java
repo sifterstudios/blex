@@ -30,26 +30,6 @@ public class SecurityConfig {
         this.customUserDetailsService = customUserDetailsService;
     }
 
-    /*
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http)
-            throws Exception {
-        http.csrf().disable().authorizeRequests()
-                //...
-                .antMatchers(
-                        HttpMethod.GET,
-                        "/index*", "/static/**", "/*.js", "/*.json", "/*.ico")
-                .permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().loginPage("/index.html")
-                .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/homepage.html", true)
-                .failureUrl("/index.html?error=true");
-        return http.build(); //
-    }
-     */
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
