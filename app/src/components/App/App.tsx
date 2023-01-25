@@ -82,7 +82,7 @@ fetchPdfList();
                         <Route path="collection" element={isAuthenticated ? <MyCollection /> : <LandingPage />} />
                         <Route path="signin" element={isAuthenticated ? <Search /> : <SignIn onLogin={login} />} />
                         <Route path="newuser" element={isAuthenticated ? <Search /> : <NewUser onRegister={(data) => console.log(data)} />} />
-                        <Route path="add" element={<Add />} />
+                        <Route path="add" element={isAuthenticated ? <Add /> : <LandingPage />} />
                     </Routes>
                 </div>
             </AuthContext.Provider>
