@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { Button, Checkbox, FileInput, Label, TextInput } from 'flowbite-react'
 import React, { useEffect, useState } from 'react'
 import UploadService from "../../services/FileUploadService";
@@ -78,106 +77,105 @@ export const BlexUploader: React.FC = () => {
         if (err.response && err.response.data && err.response.data.message) {
           setMessage(err.response.data.message);
         } else {
-          setMessage("Could not upload the file!");
+          setFormAlert({...formAlert,type:"Something went wrong!", message:"Could not upload the file!"});
         }
         setFile(undefined);
+        alertMsgContainer?.classList.remove("hide");
       });
   };
 
   return (
-    <div className="flex flex-col gap-4">
-        <div>
-          <div className="mb-2 block">
-            <Label
-              htmlFor="song"
-              value="Song name:"
-            />
-          </div>
-          <TextInput
-            id="song"
-            type="text"
-            placeholder="Beat it!"
-            required={true}
-            value={song}
-            onChange={(e) => setSong(e.target.value)}
-            shadow={true}
-          />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label
-              htmlFor="artist"
-              value="Artist:"
-              placeholder='Michael Jackson'
-            />
-          </div>
-          <TextInput
-            id="artist"
-            type="text"
-            required={true}
-            onChange={(e) => setArtist(e.target.value)}
-            shadow={true}
-          />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label
-              htmlFor="type"
-              value="Type of blex (Full band, instrument specific)"
-            />
-          </div>
-          <TextInput
-            id="type"
-            type="text"
-            required={true}
-            onChange={(e) => setType(e.target.value)}
-            shadow={true}
-          />
-        </div>
-        <div className="flex items-center gap-2">
-          <Checkbox id="agree" required={true} />
-          <Label htmlFor="agree">
-            This upload is of my own making or has been greenlit by the maker.
-          </Label>
-          <div className="mb-2 block">
-          </div>
-          <FileInput
-            id="file"
-            helperText="PDF fileformat only"
-            onChange={selectFile}
-            accept="application/pdf"
-          />
-        </div>
-        <Button 
-        disabled={!file}
-          onClick={upload}
-        >
-          UPLOAD!
-        </Button>
+      <form action="">
+        <div className="flex flex-col gap-4">
+            <div className="flex flex-col">
+              <div className="mb-2 block self-start">
+                <Label
+                  htmlFor="song"
+                  value="Song name:"
+                />
+              </div>
+              <TextInput
+                id="song"
+                type="text"
+                placeholder="Beat it!"
+                required={true}
+                value={song}
+                onChange={(e) => {setSong(e.target.value) ;validateInput(e.target.value)}}
+                shadow={true}
+              />
+            </div>
+            <div className="flex flex-col">
+              <div className="mb-2 block self-start">
+                <Label
+                  htmlFor="artist"
+                  value="Artist:"
+                  placeholder='Michael Jackson'
+                />
+              </div>
+              <TextInput
+                id="artist"
+                type="text"
+                required={true}
+                onChange={(e) => {setArtist(e.target.value);validateInput(e.target.value)}}
+                shadow={true}
+              />
+            </div>
+            <div className="flex flex-col">
+              <div className="mb-2 block self-start">
+                <Label
+                  htmlFor="type"
+                  value="Type of blex (Full band, instrument specific)"
+                />
+              </div>
+              <TextInput
+                id="type"
+                type="text"
+                required={true}
+                onChange={(e) => setType(e.target.value)}
+                shadow={true}
+              />
+            </div>
+              <div className="mb-2 block self-start">
+                <Checkbox id="agree" required={true} />
+                <Label htmlFor="agree" className="checkBox-label">
+                  This upload is my own work or I have permission by the maker.
+                </Label>
+              </div>
+            <div className="flex items-center gap-2">
+              <div className="mb-2 block">
+              </div>
+              <FileInput
+                id="file"
+                helperText="PDF fileformat only"
+                onChange={selectFile}
+                accept="application/pdf"
+              />
+            </div>
+            <Button
+            disabled={!file}
+              onClick={upload}
+            >
+              UPLOAD!
+            </Button>
 
- {file && (
-        <div className="progress my-3">
-          <div
-            className="progress-bar progress-bar-info"
-            role="progressbar"
-            aria-valuenow={progress}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            style={{ width: progress + "%" }}
-          >
-            {progress}%
-          </div>
+     {file && (
+            <div className="progress my-3">
+              <div
+                className="progress-bar progress-bar-info"
+                role="progressbar"
+                aria-valuenow={progress}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                style={{ width: progress + "%" }}
+              >
+                {progress}%
+              </div>
+            </div>
+          )}
+
+          <FormAlert type={formAlert.type} message={formAlert.message} classes={formAlert.classes}></FormAlert>
+
         </div>
-      )}
-
-      {message && (
-        <div className="alert alert-secondary mt-3" role="alert">
-          {message}
-        </div>
-      )}
-
-
-
-    </div>
+      </form>
   )
 }
