@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+      spring.datasource.password: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
     
     steps:
     - name: Checkout code
