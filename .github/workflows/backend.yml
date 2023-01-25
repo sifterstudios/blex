@@ -23,12 +23,13 @@ jobs:
       run: |
         cd api/
         mvn package -DskipTests=true
+        cd target
         ls
     
     - name: Deploy to DigitalOcean
       uses: nogsantos/ssh-scp-deploy@master
       with:
-        src: ./api/Blex-blex.jar
+        src: ./target/Blex-blex.jar
         host: ${{ secrets.SSH_HOST }}
         remote: /var/www/blex
         port: 22
