@@ -28,7 +28,7 @@ function App() {
 
 
     const getPdfList = () => {
-        const cacheInterval:number =   10 * 1000;
+        const cacheInterval:number = 60 * 60 * 1000; // in milliseconds
         
         const cachePdfList = async () => {
             const cache = localStorage.getItem('pdfList');
