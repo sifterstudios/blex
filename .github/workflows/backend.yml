@@ -8,8 +8,6 @@ on:
 jobs: 
   build:
     runs-on: ubuntu-latest
-    env:
-      spring.datasource.password: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
     
     steps:
     - name: Checkout code
@@ -24,7 +22,7 @@ jobs:
     - name: Build Fat JAR
       run: |
         cd api/
-        mvn package -DskipTests=true
+        mvn package -DskipTests=true -Dspring.datasource.password=${{ secrets.SPRING_DATASOURCE_PASSWORD }}
         cd target
         pwd
     
