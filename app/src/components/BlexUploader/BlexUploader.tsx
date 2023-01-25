@@ -2,6 +2,8 @@ import axios from 'axios';
 import { Button, Checkbox, FileInput, Label, TextInput } from 'flowbite-react'
 import React, { useEffect, useState } from 'react'
 import UploadService from "../../services/FileUploadService";
+import "./BlexUploader.css";
+import FormAlert from "../alerts/FormAlert";
 
 
 
@@ -21,6 +23,9 @@ export const BlexUploader: React.FC = () => {
   const [file, setFile] = useState<File | undefined>();
   const [message, setMessage] = useState('');
   const [fileInfos, setFileInfos] = useState([]);
+  const alertMsgContainer = document.getElementById("alertMsg")
+  const [validated, setValidated] = useState(false);
+  const [formAlert, setFormAlert] = useState({type:"Whoops..",message:"",classes:"flex p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"});
 
 
   const selectFile = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,14 +35,37 @@ export const BlexUploader: React.FC = () => {
     setProgress(0);
   };
 
+  const validateInput = (value:String) => {
+    if (value.length < 1){
+        setFormAlert({...formAlert,message:"Please provide both title and artist!"});
+        alertMsgContainer?.classList.remove("hide")
+    } else {
+        alertMsgContainer?.classList.add("hide")
+    }
+    if (artist && song){
+        setValidated(true);
+    }
+  }
+
   const upload = () => {
+    if (!validated){
+        setFormAlert({...formAlert,message:"Please fill in both title and artist!"});
+        alertMsgContainer?.classList.remove("hide")
+        return;
+    }
     setProgress(0);
-    if (!file) return;
+    if (!file){
+        setFormAlert({...formAlert,message:"Please select a file!"});
+        alertMsgContainer?.classList.remove("hide")
+      return;
+    }
+
 
     UploadService.upload(file, song, artist, type, (event: any) => {
       setProgress(Math.round((100 * event.loaded) / event.total));
     })
       .then((response) => {
+        //TODO: Add a success message on upload
         setMessage(response.data.message)
         return UploadService.getFiles();
       })
