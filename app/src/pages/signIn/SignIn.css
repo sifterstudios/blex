@@ -1,7 +1,7 @@
-.sign-in-form{
+
+form{
     padding: 3rem;
     justify-content: center;
-    max-width: 50%;
+    max-width: 60%;
     margin: 0 auto;
-
 }
