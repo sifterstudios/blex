@@ -15,26 +15,21 @@ interface Props {
 	onLogin: (username: string) => void;
 }
 
-
-
 export const SignIn: React.FC<Props> = ({ onLogin }) => {
 
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
-	const [formAlert, setFormAlert] = useState({type:"Whoops..",message:"Username or password is incorrect",classes:"flex p-4 mb-4 text-sm rounded-lg dark:bg-gray-800 text-red-800 border border-red-300 bg-red-50"});
-	const formAlertContainer = document.getElementById("formAlertContainer");
-
+	const [formAlert, setFormAlert] = useState({type:"",message:"",classes:""});
+	const alertMsgContainer = document.getElementById("alertMsg")
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		try {
-			const response = await http.post('login', {
+			await http.post('login', {
 				username,
 				password,
 			})
 				.then((response) => {
-					console.log(response.data);
-
 					if (response.data.accessToken) {
 						//save token to local storage
 						localStorage.setItem("user", JSON.stringify(response.data));
@@ -43,23 +38,17 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 					}
 					return response.data;
 				})
-			// TODO: Handle navigation here!
 		} catch (err) {
 			if (isAxiosError(err)) {
-				console.log(err.response?.data)
-			formAlertContainer?.classList.remove("hide");
-			setFormAlert({type:"Whoops..",message:"Username or password is incorrect",classes:"flex p-4 mb-4 text-sm rounded-lg dark:bg-gray-800 text-red-800 border border-red-300 bg-red-50"});
+			alertMsgContainer?.classList.remove("hide")
+			setFormAlert({type:"Whoops..",message:"Username or password is incorrect",classes:"flex p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"});
 			return;
 		}
-
-			console.error(err);
-			formAlertContainer?.classList.remove("hide");
 		}
 	};
 
 	// TODO: Implement remember me - or remove it!(LocalStorage vs. SessionStorage?)
 	return (
-
 		<>
 			<form className="sign-in-form flex flex-col gap-4" onSubmit={handleSubmit}>
 				<div>
@@ -100,9 +89,7 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 						Remember me
 					</Label>
 				</div>
-				<div id="formAlertContainer"className="hide">
 					<FormAlert type={formAlert.type} message={formAlert.message} classes={formAlert.classes}></FormAlert>
-				</div>
 				<Button type="submit">
 					Login
 				</Button>
