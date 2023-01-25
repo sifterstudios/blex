@@ -11,7 +11,7 @@ import { TopBlex } from "../../pages/topBlex/TopBlex";
 import { MyCollection } from "../../pages/myCollection/MyCollection";
 import { NewUser } from "../../pages/newUser/NewUser";
 import { LandingPage } from "../../pages/LandingPage/LandingPage";
-import axios from "axios";
+import http from '../../http-common';
 import { Add } from "../../pages/add/Add";
 
 export const AuthContext = createContext({
@@ -34,7 +34,7 @@ const fetchPdfList = async () => {
     if(pdfListCache) {
         pdfList = JSON.parse(pdfListCache);
     }else{
-        const response = await axios.get('http://localhost:8080/document', {
+        const response = await http.get('document', {
             headers: {
                 'Cache-Control': 'max-age=300',
             },

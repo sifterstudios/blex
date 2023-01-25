@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import axios, {isAxiosError} from 'axios';
 import "./SignIn.css";
 import FormAlert from "../../components/alerts/FormAlert";
+import http from '../../http-common'
 
 //TODO interface User is not used
 interface User {
@@ -27,7 +28,7 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		try {
-			const response = await axios.post('http://localhost:8080/login', {
+			const response = await http.post('login', {
 				username,
 				password,
 			})
