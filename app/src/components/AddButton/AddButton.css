@@ -1,3 +1,6 @@
+.hide{
+    display: none;
+}
 
 .plus-sign {
   transition: all 0.3s ease;
