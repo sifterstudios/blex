@@ -8,6 +8,8 @@ on:
 jobs: 
   build:
     runs-on: ubuntu-latest
+    env:
+      SPRING_DATASOURCE_PASSWORD: ${{ SPRING_DATASOURCE_PASSWORD }}
     
     steps:
     - name: Checkout code
