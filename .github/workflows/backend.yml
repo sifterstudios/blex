@@ -21,7 +21,6 @@ jobs:
     - name: Adding secret
       run: |
           echo $DEV_PROP_FILE >> api/src/main/resources/application.properties
-          cat api/src/main/resources/application.properties
       shell: bash
       env:
         DEV_PROP_FILE: ${{secrets.SPRING_DATASOURCE_PASSWORD}}
@@ -30,8 +29,6 @@ jobs:
       run: |
         cd api/
         mvn package -DskipTests=true
-        cd target
-        pwd
     
     - name: Deploy to DigitalOcean
       uses: nogsantos/ssh-scp-deploy@master
