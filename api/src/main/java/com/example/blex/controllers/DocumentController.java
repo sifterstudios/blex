@@ -34,7 +34,7 @@ public class DocumentController {
         Path root = currDir.toPath().getRoot();
         UPLOAD_FOLDER = root+"files/";
     }
-
+//
 
 
     @PostMapping("/document/upload")
