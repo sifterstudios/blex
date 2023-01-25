@@ -21,7 +21,7 @@ jobs:
     - name: Adding secret
       run: |
           echo $DEV_PROP_FILE >> api/src/main/resources/application.properties
-          cat src/main/resources/application.properties
+          cat api/src/main/resources/application.properties
       shell: bash
       env:
         DEV_PROP_FILE: ${{secrets.SPRING_DATASOURCE_PASSWORD}}
