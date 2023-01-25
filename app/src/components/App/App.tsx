@@ -13,6 +13,7 @@ import { NewUser } from "../../pages/newUser/NewUser";
 import { LandingPage } from "../../pages/LandingPage/LandingPage";
 import { Add } from "../../pages/add/Add";
 import axios from 'axios';
+import { BlexPdfViewer } from "../BlexPdfViewer/BlexPdfViewer";
 
 
 export const AuthContext = createContext({
@@ -89,6 +90,7 @@ function App() {
                         <Route path="signin" element={isAuthenticated ? <Search /> : <SignIn onLogin={login} />} />
                         <Route path="newuser" element={isAuthenticated ? <Search /> : <NewUser onRegister={(data) => console.log(data)} />} />
                         <Route path="add" element={isAuthenticated ? <Add /> : <LandingPage />} />
+                        <Route path="/document/:id" element={isAuthenticated ? <BlexPdfViewer /> : <LandingPage />} />
                     </Routes>
                 </div>
             </AuthContext.Provider>
@@ -97,3 +99,12 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+  
+  
