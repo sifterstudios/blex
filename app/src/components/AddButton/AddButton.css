@@ -1,19 +1,16 @@
-.plus-sign {
 
+.plus-sign {
   transition: all 0.3s ease;
-  &:hover{
-    cursor:pointer;
+}
+.plus-sign:hover {
+    cursor: pointer;
     transform: rotate(90deg);
     transition: all 0.3s ease;
-    &:active{
-      background-color:green !important;
+}
+.plus-sign:active{
       transition: none;
-      &:before,&:after{
-        width:10px;
-      }
-    }
   }
-  &:before,&:after{
+.plus-sign:before,.plus-sign:after{
     position:absolute;
 	  top:50%;
 	  left:50%;
@@ -23,13 +20,14 @@
 	  height:5px;
 	  width:20px;
   }
-  &:after{
+.plus-sign:after{
     transform:rotate(90deg);
 	  -webkit-transform:rotate(90deg);
 	  -mox-transform:rotate(90deg);
-  }
-
 }
 
+.addCircle:active{
+    background-color: rgb(8 145 178);
+}
 
 
