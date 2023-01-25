@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import {FC, useContext} from "react";
 import { Dropdown, Navbar } from "flowbite-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faSheetPlastic } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +12,7 @@ interface Props {
 }
 
 
-export const BlexBar: React.FC<Props> = ({onLogout}) => {
+export const BlexBar: FC<Props> = ({onLogout}) => {
     const { isAuthenticated } = useContext(AuthContext);
     const username = localStorage.getItem('username');
 
