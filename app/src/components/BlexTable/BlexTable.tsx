@@ -1,6 +1,8 @@
 import { Rating, Table } from 'flowbite-react';
 import React from 'react'
 import pdf from '../../types/pdf';
+//import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 interface pdfProps {
 	pdfs: pdf[];
@@ -10,6 +12,13 @@ interface pdfProps {
 
 
 export const BlexTable: React.FC<pdfProps> = ({ pdfs }: pdfProps) => {
+
+	const handleRowClick = (id: number) => {
+		//history.push(`/document/${id}`);
+		console.log("pressed table with id: " + id);
+		axios.get(`http://localhost:8080/document/${id}`);
+	  }
+
 
 	const handleRating = function(pdf: pdf) {
 		const stars = Math.floor(pdf.rating);
@@ -47,7 +56,7 @@ return <Rating> {elementArray} </Rating>;
 				</Table.Head>
 				<Table.Body className="divide-y">
 					{pdfs.map(pdf => {
-						return <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+						return <Table.Row key={pdf.id} onClick={() => handleRowClick(pdf.id)} className="bg-white dark:border-gray-700 dark:bg-gray-800">
 							<Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
 								{pdf.songtitle}
 							</Table.Cell>
@@ -67,3 +76,9 @@ return <Rating> {elementArray} </Rating>;
 		</div>
 	)
 }
+
+
+
+
+  
+
