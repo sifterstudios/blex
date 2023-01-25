@@ -18,11 +18,18 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: 17
+    - name: Adding secret
+      run: |
+          echo $DEV_PROP_FILE >> api/src/main/resources/application.properties
+          cat src/main/resources/application.properties
+      shell: bash
+      env:
+        DEV_PROP_FILE: ${{secrets.SPRING_DATASOURCE_PASSWORD}}
     
     - name: Build Fat JAR
       run: |
         cd api/
-        mvn package -DskipTests=true -Dspring.datasource.password=${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+        mvn package -DskipTests=true
         cd target
         pwd
     
