@@ -16,13 +16,15 @@ const pdf: pdf = {
     }; 
 
 
+const pdfList = JSON.parse(localStorage.getItem('pdfList')||"");
+
     return (
     <>
     <br/>
     <br/>
     <br/>
        <h1 className='text-white text-5xl mb-20'>Top Blex</h1> 
-       <BlexTable pdfs={[pdf]} />
+       <BlexTable pdfs={pdfList} />
     </>
     )
 }

@@ -11,8 +11,9 @@ import { TopBlex } from "../../pages/topBlex/TopBlex";
 import { MyCollection } from "../../pages/myCollection/MyCollection";
 import { NewUser } from "../../pages/newUser/NewUser";
 import { LandingPage } from "../../pages/LandingPage/LandingPage";
-import axios from "axios";
 import { Add } from "../../pages/add/Add";
+import axios from 'axios';
+
 
 export const AuthContext = createContext({
     isAuthenticated: false,
@@ -25,27 +26,32 @@ function App() {
         document.body.classList.add('bg-gradient-to-tl', 'from-slate-900', 'to-cyan-900', 'dark', 'min-h-screen');
     }, []);
 
-const pdfListCacheKey = 'pdfListCache';
 
-const fetchPdfList = async () => {
-    let pdfList;
-
-    const pdfListCache = localStorage.getItem(pdfListCacheKey);
-    if(pdfListCache) {
-        pdfList = JSON.parse(pdfListCache);
-    }else{
-        const response = await axios.get('http://localhost:8080/document', {
-            headers: {
-                'Cache-Control': 'max-age=300',
-            },
-        });
-        pdfList = response.data;
-        localStorage.setItem(pdfListCacheKey, JSON.stringify(pdfList));
+    const getPdfList = () => {
+        const cacheInterval:number =   10 * 1000;
+        
+        const cachePdfList = async () => {
+            const cache = localStorage.getItem('pdfList');
+            const timestamp = parseInt(localStorage.getItem('timeStamp')||"0");
+            if (cache && new Date().getTime() - timestamp < cacheInterval) {
+                console.debug("All good!");
+            } else {
+                try {
+                    const response = await axios.get('http://localhost:8080/document');
+                    localStorage.setItem('pdfList', JSON.stringify(response.data));
+                    localStorage.setItem('timeStamp', JSON.stringify(new Date().getTime()))
+                    console.debug("Cache successfull!")
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        };
+        cachePdfList();
     }
-    return pdfList;
-}
 
-fetchPdfList();
+    getPdfList();
+
+
 
 
 
