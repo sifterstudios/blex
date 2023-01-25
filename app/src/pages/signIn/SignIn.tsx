@@ -1,7 +1,8 @@
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react'
 import React, { useState } from 'react'
-import axios from 'axios';
+import axios, {isAxiosError} from 'axios';
 import "./SignIn.css";
+import FormAlert from "../../components/alerts/FormAlert";
 
 //TODO interface User is not used
 interface User {
@@ -19,6 +20,9 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
+	const [formAlert, setFormAlert] = useState({type:"Whoops..",message:"Username or password is incorrect",classes:"flex p-4 mb-4 text-sm rounded-lg dark:bg-gray-800 text-red-800 border border-red-300 bg-red-50"});
+	const formAlertContainer = document.getElementById("formAlertContainer");
+
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -28,6 +32,8 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 				password,
 			})
 				.then((response) => {
+					console.log(response.data);
+
 					if (response.data.accessToken) {
 						//save token to local storage
 						localStorage.setItem("user", JSON.stringify(response.data));
@@ -38,7 +44,15 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 				})
 			// TODO: Handle navigation here!
 		} catch (err) {
+			if (isAxiosError(err)) {
+				console.log(err.response?.data)
+			formAlertContainer?.classList.remove("hide");
+			setFormAlert({type:"Whoops..",message:"Username or password is incorrect",classes:"flex p-4 mb-4 text-sm rounded-lg dark:bg-gray-800 text-red-800 border border-red-300 bg-red-50"});
+			return;
+		}
+
 			console.error(err);
+			formAlertContainer?.classList.remove("hide");
 		}
 	};
 
@@ -84,6 +98,9 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 					<Label htmlFor="remember">
 						Remember me
 					</Label>
+				</div>
+				<div id="formAlertContainer"className="hide">
+					<FormAlert type={formAlert.type} message={formAlert.message} classes={formAlert.classes}></FormAlert>
 				</div>
 				<Button type="submit">
 					Login
