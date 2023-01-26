@@ -10,7 +10,7 @@ const pdf: pdf = {
     rating: 3.4,
     type: 'Full Band',
     artist: 'Maren&Bjørn',
-    song: 'I love TypeScript',
+    songtitle: 'I love TypeScript',
     link: 'bit.do/YeetYeet',
     numRatings: 5342,
     }; 

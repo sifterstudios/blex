@@ -49,7 +49,7 @@ return <Rating> {elementArray} </Rating>;
 					{pdfs.map(pdf => {
 						return <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
 							<Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-								{pdf.song}
+								{pdf.songtitle}
 							</Table.Cell>
 							<Table.Cell>
 								{pdf.artist}
