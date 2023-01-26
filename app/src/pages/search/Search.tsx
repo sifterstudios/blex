@@ -3,6 +3,7 @@ import pdf from '../../types/pdf';
 import axios from 'axios';
 import { TextInput, Label, Button } from 'flowbite-react'
 import React from 'react'
+import "./Search.css"
 
 interface Blekk {
   id: number;
@@ -28,14 +29,17 @@ export const Search = () => {
 
   const [query, setQuery] = React.useState('')
   const [results, setResults] = React.useState<Blekk[]>([])
-  const [message, setMessage] = React.useState('')
-  const [error, setError] = React.useState(false)
+
   const cache = localStorage.getItem('pdfList');
   let cacheArray = JSON.parse(cache||"[]");
 
+  const noResultMsg = document.getElementById("noResultMsg");
+  const tableHead = document.getElementById("tableHead");
+
     //TODO search on change - and add match on partial word
-    //TODO fix superbuggy search - it works but not as intended, returns only one result. Keeps old result if any match on new search
     const log = () => {
+        noResultMsg?.classList.add("hide");
+        tableHead?.classList.remove("hide");
         setResults([]);
         console.log(results)
         console.log("Query: " + query);
@@ -57,9 +61,13 @@ export const Search = () => {
             }
         }
         setResults([...captured] )
-        if (results.length == 0) {
+
+        if (captured.length < 1) {
           console.log("No results found")
-    }
+            noResultMsg?.classList.remove("hide");
+            tableHead?.classList.add("hide");
+        }
+
     console.log("ResultArray: "+results);
     }
 
@@ -76,12 +84,13 @@ export const Search = () => {
               onChange={(e) => setQuery(e.target.value)}
           />
           <Button onClick={log}>Search</Button>
+            <p id="noResultMsg" className="italic hide dark:text-white">Sorry, no blex match this search...how about making and adding it?!</p>
         </div>
         <Table
             striped={true}
             hoverable={true}
         >
-            <Table.Head>
+            <Table.Head id="tableHead" className="hide">
                 <Table.HeadCell>
                             Song
                 </Table.HeadCell>
@@ -112,6 +121,7 @@ export const Search = () => {
                                         stars here
                                     </Table.Cell>
                                 </Table.Row>
+
                         )})}
                     </Table.Body>
                 </Table>
