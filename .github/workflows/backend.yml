@@ -48,4 +48,5 @@ jobs:
         port: 22
         script: |
           echo ${{ secrets.PASS }} | sudo -S service blex stop
+          sleep 5
           echo ${{ secrets.PASS }} | sudo -S service blex start
