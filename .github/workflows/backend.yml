@@ -47,9 +47,5 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         port: 22
         script: |
-          service blex stop
-          2
-          ${{ secrets.PASS }}
-          service blex start
-          2
-          ${{ secrets.PASS }}
+          echo ${{ secrets.PASS }} | sudo -S service blex stop
+          echo ${{ secrets.PASS }} | sudo -S service blex start
