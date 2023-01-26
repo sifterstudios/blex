@@ -30,7 +30,7 @@ public class DocumentController {
 
     public DocumentController(DocumentRepository documentRepository) {
         this.documentRepository = documentRepository;
-        UPLOAD_FOLDER = "home/sifter/files/";
+        UPLOAD_FOLDER = "/home/sifter/files/";
     }
 //
 
@@ -49,8 +49,8 @@ public class DocumentController {
         document.setType(type);
         document.setFilename(file.getOriginalFilename());
         documentRepository.save(document);
-
         final String newFilename = document.getId().toString()+".pdf";
+        System.out.println(UPLOAD_FOLDER + newFilename );
         File dest = new File(UPLOAD_FOLDER+newFilename);
         file.transferTo(dest);
 
