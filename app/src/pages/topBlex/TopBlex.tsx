@@ -11,7 +11,6 @@ const pdf: pdf = {
     type: 'Full Band',
     artist: 'Maren&Bjørn',
     songtitle: 'I love TypeScript',
-    link: 'bit.do/YeetYeet',
     numRatings: 5342,
     }; 
 

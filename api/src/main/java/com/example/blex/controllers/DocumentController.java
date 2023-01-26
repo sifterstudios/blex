@@ -54,6 +54,7 @@ public class DocumentController {
         documentRepository.save(document);
 
         final String newFilename = document.getId().toString()+".pdf";
+        System.out.println(UPLOAD_FOLDER + newFilename );
         File dest = new File(UPLOAD_FOLDER+newFilename);
         file.transferTo(dest);
 
@@ -75,6 +76,10 @@ public class DocumentController {
     }
 
 
+
+
+
+
     @GetMapping("/document/download/{id}")
     public ResponseEntity<InputStreamResource> downloadDocument(@PathVariable(value = "id") Long id) throws FileNotFoundException {
         //TODO: throw exception hvis .orElse(null)
@@ -93,6 +98,12 @@ public class DocumentController {
                 .contentLength(file.length())
                 .body(resource);
     }
+
+
+
+
+
+
 
 
 }
