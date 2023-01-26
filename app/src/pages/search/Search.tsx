@@ -60,7 +60,19 @@ export const Search = () => {
         sizing="lg"
         onChange={(e) => setQuery(e.target.value)}
         />
-        <Button onClick={()=>log(query)}>Search</Button>
+        <Button onClick={log}>Search</Button>
+        <div className="flex flex-col gap-4">
+            {results.map(result => {
+                return (
+
+                <div className="flex flex-col gap-4 bg-[#fff]">
+                    <p>{result.filename}</p>
+                    <p>{result.artist}</p>
+                    <p>{result.songtitle}</p>
+                    <p>{result.type}</p>
+                </div>)})}
+            </div>
+
     </div>
   )
 }
