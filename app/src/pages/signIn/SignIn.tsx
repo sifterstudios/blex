@@ -50,8 +50,8 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 	return (
 		<>
 			<form className="sign-in-form flex flex-col gap-4" onSubmit={handleSubmit}>
-				<div>
-					<div className="mb-2 block">
+				<div className="flex flex-col">
+					<div className="mb-2 block self-start">
 						<Label
 							htmlFor="user"
 							value="Your Username:"
@@ -66,8 +66,8 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 						onChange={(e) => setUsername(e.target.value)}
 					/>
 				</div>
-				<div>
-					<div className="mb-2 block">
+				<div className="flex flex-col">
+					<div className="mb-2 block self-start">
 						<Label
 							htmlFor="pass"
 							value="Your password"
