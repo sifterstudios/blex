@@ -50,12 +50,12 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 	// TODO: Implement remember me - or remove it!(LocalStorage vs. SessionStorage?)
 	return (
 		<>
-			<form className="sign-in-form flex flex-col gap-4" onSubmit={handleSubmit}>
-				<div>
-					<div className="mb-2 block">
+			<form className="sign-in-form flex flex-col ml-auto md:w-2/4 gap-4 md:m-auto" onSubmit={handleSubmit}>
+				<div className="flex flex-col">
+					<div className="mb-2 block self-start">
 						<Label
 							htmlFor="user"
-							value="Your Username:"
+							value="Username:"
 						/>
 					</div>
 					<TextInput
@@ -67,11 +67,11 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 						onChange={(e) => setUsername(e.target.value)}
 					/>
 				</div>
-				<div>
-					<div className="mb-2 block">
+				<div className="flex flex-col">
+					<div className="mb-2 block self-start">
 						<Label
 							htmlFor="pass"
-							value="Your password"
+							value="Password"
 						/>
 					</div>
 					<TextInput

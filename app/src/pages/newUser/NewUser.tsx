@@ -108,11 +108,11 @@ export const NewUser: React.FC<Props> = ({ onRegister }) => {
 	return (
 		<>
 			<form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-				<div>
-					<div className="mb-2 block">
+				<div className="flex flex-col">
+				<div className="mb-2 block self-start">
 						<Label
 							htmlFor="user"
-							value="Your username"
+							value="Username"
 						/>
 					</div>
 					<TextInput
@@ -127,8 +127,8 @@ export const NewUser: React.FC<Props> = ({ onRegister }) => {
 					<p id="usernameErr" className="mt-2 text-sm text-red-600 dark:text-red-500 dark:text-red-400 dark:border-red-800 hide"><span
 						className="font-medium">Oops!</span> Username already taken!</p>
 				</div>
-				<div>
-					<div className="mb-2 block">
+				<div className="flex flex-col">
+					<div className="mb-2 block self-start">
 						<Label
 							htmlFor="email"
 							value="Your email"
@@ -146,9 +146,8 @@ export const NewUser: React.FC<Props> = ({ onRegister }) => {
 						className="font-medium">Oops!</span> Email already registered!</p>
 
 				</div>
-
-				<div>
-					<div className="mb-2 block">
+				<div className="flex flex-col">
+					<div className="mb-2 block self-start">
 						<Label
 							htmlFor="password2"
 							value="Your password"
@@ -162,8 +161,8 @@ export const NewUser: React.FC<Props> = ({ onRegister }) => {
 						onChange={(e) => setPassword1(e.target.value)}
 					/>
 				</div>
-				<div>
-					<div className="mb-2 block">
+				<div className="flex flex-col">
+					<div className="mb-2 block self-start">
 						<Label
 							htmlFor="repeat-password"
 							value="Repeat password"
