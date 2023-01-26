@@ -28,7 +28,7 @@ jobs:
     - name: Build Fat JAR
       run: |
         cd api/
-        mvn package -DskipTests=true
+        mvn package
     
     - name: Deploy to DigitalOcean
       uses: nogsantos/ssh-scp-deploy@master
