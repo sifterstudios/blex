@@ -30,9 +30,8 @@ public class DocumentController {
 
     public DocumentController(DocumentRepository documentRepository) {
         this.documentRepository = documentRepository;
-        File currDir = new File(System.getProperty("user.dir", "."));
-        Path root = currDir.toPath().getRoot();
-        UPLOAD_FOLDER = root+"files/";
+        String home = System.getProperty("user.home", "home/sifter/");
+        UPLOAD_FOLDER = home + "files/";
     }
 //
 

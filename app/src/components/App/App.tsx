@@ -15,12 +15,11 @@ import http from '../../http-common';
 import { Add } from "../../pages/add/Add";
 import axios from 'axios';
 import { BlexPdfViewer } from "../BlexPdfViewer/BlexPdfViewer";
+import Item from "../../pages/item/Item";
 
 
 export const AuthContext = createContext({
     isAuthenticated: false,
-    login: (username: string | null) => { },
-    logout: () => { },
     username: '',
 });
 function App() {
@@ -73,12 +72,10 @@ const pdfListCacheKey = 'pdfListCache';
         localStorage.removeItem('isAuthenticated');
         localStorage.removeItem('username');
     };
-    const navigate = useNavigate();
-
-
+    useNavigate();
     return (
         <>
-            <AuthContext.Provider value={{ isAuthenticated, login, logout, username }}>
+            <AuthContext.Provider value={{ isAuthenticated, username }}>
                 <BlexBar  onLogout={logout} />
                 <div className="container bg-slate-900 h-full min-h-screen rounded">
                     <Routes>
@@ -92,7 +89,7 @@ const pdfListCacheKey = 'pdfListCache';
                         <Route path="signin" element={isAuthenticated ? <Search /> : <SignIn onLogin={login} />} />
                         <Route path="newuser" element={isAuthenticated ? <Search /> : <NewUser onRegister={(data) => console.log(data)} />} />
                         <Route path="add" element={isAuthenticated ? <Add /> : <LandingPage />} />
-                        <Route path="/document/:id" element={isAuthenticated ? <BlexPdfViewer /> : <LandingPage />} />
+                        <Route path="/document/:id" element={isAuthenticated ? <Item /> : <LandingPage />} />
                     </Routes>
                 </div>
             </AuthContext.Provider>
