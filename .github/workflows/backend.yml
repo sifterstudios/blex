@@ -39,3 +39,17 @@ jobs:
         port: 22
         user: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@v0.1.7
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: 22
+        script: |
+          service blex stop
+          2
+          ${{ secrets.PASS }}
+          service blex start
+          2
+          ${{ secrets.PASS }}
