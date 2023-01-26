@@ -1,15 +1,14 @@
 import React from 'react'
-import axios from "axios";
 import {getCurrentUser} from "../../services/AuthService";
 import "./Settings.css";
+import http from '../../http-common'
 
 export const Settings = () => {
 
-  const API_URL = "http://localhost:8080/";
   const[userData, setUserData] = React.useState<any>({});
 
     React.useEffect(() => {
-       axios.get(API_URL + "user/name/" + getCurrentUser())
+       http.get("user/name/" + getCurrentUser())
           .then((response) => {
               setUserData(response.data)
             return response.data;

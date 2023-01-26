@@ -11,6 +11,7 @@ import { TopBlex } from "../../pages/topBlex/TopBlex";
 import { MyCollection } from "../../pages/myCollection/MyCollection";
 import { NewUser } from "../../pages/newUser/NewUser";
 import { LandingPage } from "../../pages/LandingPage/LandingPage";
+import http from '../../http-common';
 import { Add } from "../../pages/add/Add";
 import axios from 'axios';
 import { BlexPdfViewer } from "../BlexPdfViewer/BlexPdfViewer";
@@ -27,10 +28,11 @@ function App() {
         document.body.classList.add('bg-gradient-to-tl', 'from-slate-900', 'to-cyan-900', 'dark', 'min-h-screen');
     }, []);
 
+const pdfListCacheKey = 'pdfListCache';
 
     const getPdfList = () => {
         const cacheInterval:number = 60 * 60 * 1000; // in milliseconds
-        
+
         const cachePdfList = async () => {
             const cache = localStorage.getItem('pdfList');
             const timestamp = parseInt(localStorage.getItem('timeStamp')||"0");
@@ -106,5 +108,4 @@ export default App;
 
 
 
-  
-  
+

@@ -1,4 +1,4 @@
-import { Component, Provider, useContext } from "react";
+import {FC, useContext} from "react";
 import { Dropdown, Navbar } from "flowbite-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faSheetPlastic } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +12,7 @@ interface Props {
 }
 
 
-export const BlexBar: React.FC<Props> = ({onLogout}) => {
+export const BlexBar: FC<Props> = ({onLogout}) => {
     const { isAuthenticated } = useContext(AuthContext);
     const username = localStorage.getItem('username');
 
@@ -59,7 +59,7 @@ export const BlexBar: React.FC<Props> = ({onLogout}) => {
                                 <Dropdown.Item className="dark:bg-slate-800">My Collection</Dropdown.Item>
                             </Link>
                             <Dropdown.Divider />
-                            <Link to="/"onClick={onLogout}>
+                            <Link to="/" onClick={onLogout}>
                                 <Dropdown.Item className="dark:bg-slate-800">Sign out</Dropdown.Item>
                             </Link>
                         </Dropdown>
@@ -80,7 +80,6 @@ export const BlexBar: React.FC<Props> = ({onLogout}) => {
             </div>
         );
     }
-
     else {
         return (
             <Navbar fluid={true} rounded={true} className="dark:bg-slate-800 container mx-auto">

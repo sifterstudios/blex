@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { BlexModal } from "../../components/BlexModal/BlexModal";
 import "./NewUser.css";
 import FormAlert from "../../components/alerts/FormAlert";
+import http from '../../http-common'
 
 
 interface User {
@@ -56,7 +57,7 @@ export const NewUser: React.FC<Props> = ({ onRegister }) => {
 		if (isValidated) {
 			try {
 				const response = await
-					axios.post('http://localhost:8080/register', {
+					http.post('register', {
 						username,
 						password,
 						email,
