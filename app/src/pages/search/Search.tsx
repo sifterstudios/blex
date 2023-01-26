@@ -36,7 +36,6 @@ export const Search = () => {
   const noResultMsg = document.getElementById("noResultMsg");
   const tableHead = document.getElementById("tableHead");
 
-    //TODO search on change - and add match on partial word
     const log = () => {
         noResultMsg?.classList.add("hide");
         tableHead?.classList.remove("hide");
@@ -50,7 +49,7 @@ export const Search = () => {
             let songTitle = cacheArray[i].songtitle.toLowerCase();
             let queryName = query.toLowerCase();
 
-            if (artistName == queryName ||songTitle == queryName) {
+            if (artistName.includes(queryName) ||songTitle.includes(queryName)) {
                 captured.push({
                     id: cacheArray[i].id,
                     songtitle: cacheArray[i].songtitle,
