@@ -13,48 +13,42 @@ interface Blekk {
 export const Search = () => {
     const [query, setQuery] = React.useState('')
     const [results, setResults] = React.useState<Blekk[]>([])
-    const [loading, setLoading] = React.useState(false)
-    const [message, setMessage] = React.useState('')
-    const [error, setError] = React.useState(false)
+    // const [message, setMessage] = React.useState('')
+    // const [error, setError] = React.useState(false)
     const cache = localStorage.getItem('pdfList');
     let cacheArray = JSON.parse(cache||"[]");
 
-
-
-    const log = (queryString : string) => {
+    //TODO search on change - and add match on partial word
+    //TODO fix superbuggy search - it works but not as intended, returns only one result. Keeps old result if any match on new search
+    const log = () => {
         setResults([]);
         console.log(results)
-        console.log("Query: "+queryString);
+        console.log("Query: " + query);
 
         for (let i = 0; i < cacheArray.length; i++) {
-            if (cacheArray[i].artist != undefined){
-                //console.log("artist name " + cacheArray[i].artist.toLowerCase())
-                let artistName = cacheArray[i].artist.toLowerCase();
-                let queryName = queryString.toLowerCase();
-               // console.log("One of theese are not like the other? " + queryName +"->" + artistName)
-                if (artistName == queryName) {
-                    console.log("JADDA!!!!!!" )
-                    console.log(cacheArray[i].songtitle);
-                    console.log(cacheArray[i].id);
-                    console.log(cacheArray[i].filename);
-                    const captured:Blekk[] = [{
-                        id:cacheArray[i].id,
-                        songtitle:cacheArray[i].songtitle,
-                        artist:cacheArray[i].artist,
-                        type:cacheArray[i].type,
-                        filename:cacheArray[i].filename
-                    }]
-                    setResults([...results, ...captured])
-                }
+            let artistName = cacheArray[i].artist.toLowerCase();
+            let songTitle = cacheArray[i].songtitle.toLowerCase();
+            let queryName = query.toLowerCase();
+
+            if (artistName == queryName || songTitle == queryName) {
+                const captured: Blekk[] = [{
+                    id: cacheArray[i].id,
+                    songtitle: cacheArray[i].songtitle,
+                    artist: cacheArray[i].artist,
+                    type: cacheArray[i].type,
+                    filename: cacheArray[i].filename
+                },]
+
+                setResults([...results, ...captured] )
+            }
+        }
+
+            if (results.length == 0) {
+                console.log("No results found")
             }
 
-        }
-        if (results.length == 0) {
-            console.log("No results found")
-        }
-            console.log("ResultArray: "+results);
+        console.log(results);
     }
-
 
   return (
     <div className="flex h-96 flex-col justify-center gap-4 p-56">
