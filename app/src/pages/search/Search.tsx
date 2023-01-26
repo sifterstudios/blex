@@ -40,7 +40,7 @@ export const Search = () => {
 
     //TODO search on change - and add match on partial word
     //TODO fix superbuggy search - it works but not as intended, returns only one result. Keeps old result if any match on new search
-    const log = () => {
+    const log = (query:any) => {
         setResults([]);
         console.log(results)
         console.log("Query: " + query);
@@ -68,7 +68,7 @@ export const Search = () => {
       console.log("No results found")
     }
     console.log("ResultArray: "+results);
-  }
+  
 
 
 
