@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-	baseURL: process.env.API_BASE_URL,
+	baseURL: 'http://api.blex.today',
 	headers: {
 		"Content-type": "application/json",
 	},
