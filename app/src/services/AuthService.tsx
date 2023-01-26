@@ -1,9 +1,3 @@
-
-export const logoutBackEnd = () => {
-    localStorage.removeItem("user");
-    console.log("logged out")
-};
-
 export const getCurrentUser = () => {
     const token = localStorage.getItem("user");
     if (token) {

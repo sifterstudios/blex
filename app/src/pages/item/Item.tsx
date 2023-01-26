@@ -7,7 +7,7 @@ function Item() {
     return (
         <div>
             <h1>OESUHTOESTNH</h1>
-            {/*<BlexPdfViewer pdf={id}/>*/}
+            {<BlexPdfViewer id={parseInt(id as string)}/>}
         </div>
     );
 }

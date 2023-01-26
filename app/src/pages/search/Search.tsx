@@ -1,4 +1,4 @@
-import { TextInput, Label, Button } from 'flowbite-react'
+import { TextInput, Button } from 'flowbite-react'
 import React from 'react'
 
 export const Search = () => {

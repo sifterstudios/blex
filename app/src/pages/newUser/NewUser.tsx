@@ -1,4 +1,4 @@
-import axios, { isAxiosError} from "axios";
+import { isAxiosError} from "axios";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import React, { useState } from "react";
 import { BlexModal } from "../../components/BlexModal/BlexModal";

@@ -1,6 +1,6 @@
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react'
 import React, { useState } from 'react'
-import axios, {isAxiosError} from 'axios';
+import {isAxiosError} from 'axios';
 import "./SignIn.css";
 import FormAlert from "../../components/alerts/FormAlert";
 import http from '../../http-common'
