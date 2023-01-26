@@ -23,7 +23,7 @@ interface pages {
 
 	return (
 		<>
-			<Document file={'https://api.blex.today/'+id} onLoadSuccess={onDocumentLoadSuccess}>
+			<Document file={'https://api.blex.today/document/download/'+id} onLoadSuccess={onDocumentLoadSuccess}>
 				<Page pageNumber={pageNumber} />
 			</Document>
 			<p>
