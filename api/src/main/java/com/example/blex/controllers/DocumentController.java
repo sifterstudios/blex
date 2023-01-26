@@ -31,7 +31,7 @@ public class DocumentController {
     public DocumentController(DocumentRepository documentRepository) {
         this.documentRepository = documentRepository;
         String home = System.getProperty("user.home", "home/sifter/");
-        UPLOAD_FOLDER = home + "files/";
+        UPLOAD_FOLDER = "home/sifter/files/";
     }
 //
 
