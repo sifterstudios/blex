@@ -40,28 +40,29 @@ export const Search = () => {
         console.log(results)
         console.log("Query: " + query);
 
+        let captured: Blekk[] = []
         for (let i = 0; i < cacheArray.length; i++) {
             let artistName = cacheArray[i].artist.toLowerCase();
             let songTitle = cacheArray[i].songtitle.toLowerCase();
             let queryName = query.toLowerCase();
 
-            if (artistName == queryName || songTitle == queryName) {
-                const captured: Blekk[] = [{
+            if (artistName == queryName ||songTitle == queryName) {
+                captured.push({
                     id: cacheArray[i].id,
                     songtitle: cacheArray[i].songtitle,
                     artist: cacheArray[i].artist,
                     type: cacheArray[i].type,
                     filename: cacheArray[i].filename
-                },]
-
-                setResults([...results, ...captured] )
+                });
             }
         }
-    if (results.length == 0) {
-      console.log("No results found")
+        setResults([...captured] )
+        if (results.length == 0) {
+          console.log("No results found")
     }
     console.log("ResultArray: "+results);
     }
+
 
   return (
       <>
