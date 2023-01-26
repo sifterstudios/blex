@@ -54,7 +54,7 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 					<div className="mb-2 block self-start">
 						<Label
 							htmlFor="user"
-							value="Your Username:"
+							value="Username:"
 						/>
 					</div>
 					<TextInput
@@ -70,7 +70,7 @@ export const SignIn: React.FC<Props> = ({ onLogin }) => {
 					<div className="mb-2 block self-start">
 						<Label
 							htmlFor="pass"
-							value="Your password"
+							value="Password"
 						/>
 					</div>
 					<TextInput
