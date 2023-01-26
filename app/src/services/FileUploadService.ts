@@ -15,12 +15,12 @@ const upload = (file: File, song: string, artist: string, type: string, onUpload
 		onUploadProgress,
 	});
 };
-const getFiles = () : Promise<any> => {
-return http.get("/document");
+const getFiles = (): Promise<any> => {
+	return http.get("/document");
 };
 
 const FileUploadService = {
-upload,
-getFiles,
+	upload,
+	getFiles,
 };
 export default FileUploadService;

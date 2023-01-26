@@ -3,7 +3,7 @@ export default interface pdf {
 	userId: number,
 	link: string,
 	artist: string,
-	song: string,
+	songtitle: string,
 	rating: number,
 	numRatings: number,
 	type: string,
