@@ -62,7 +62,6 @@ return <Rating> {elementArray} </Rating>;
 				<Table.Body className="divide-y">
 					{pdfs.map(pdf => {
 						return (
-						
 							<Table.Row key={pdf.id} onClick={() => handleRowClick(pdf.id)} className="bg-white dark:border-gray-700 dark:bg-gray-800">
 								<Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
 									{pdf.songtitle}
@@ -77,20 +76,9 @@ return <Rating> {elementArray} </Rating>;
 									{handleRating(pdf)}
 								</Table.Cell>
 							</Table.Row>
-						
 					)})}
 				</Table.Body>
 			</Table>
 		</div>
 	)
 }
-
-
-
-
-  
-
-
-
-
-  
