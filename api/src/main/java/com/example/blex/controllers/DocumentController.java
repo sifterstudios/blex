@@ -4,6 +4,7 @@ package com.example.blex.controllers;
 import com.example.blex.entities.Document;
 import com.example.blex.exceptions.ResourceNotFoundException;
 import com.example.blex.repositories.DocumentRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -30,17 +31,18 @@ public class DocumentController {
 
     public DocumentController(DocumentRepository documentRepository) {
         this.documentRepository = documentRepository;
-        String home = System.getProperty("user.home", "home/sifter/");
-        UPLOAD_FOLDER = "home/sifter/files/";
+        //String home = System.getProperty("user.home", "home/sifter/");
+        //UPLOAD_FOLDER = "home/sifter/files/";
+        UPLOAD_FOLDER = "C:/files/";
     }
-//
+
 
 
     @PostMapping("/document/upload")
     public Document uploadDocument(@RequestBody MultipartFile file,
-                                   @RequestParam (defaultValue = "") String song,
-                                   @RequestParam (defaultValue = "") String artist,
-                                   @RequestParam (defaultValue = "")String type) throws IOException {
+                                   @RequestParam(defaultValue = "") String song,
+                                   @RequestParam(defaultValue = "") String artist,
+                                   @RequestParam(defaultValue = "") String type) throws IOException {
 
         //TODO: funksjon som setter document user_id fra innlogget user til document table i database.
 
@@ -59,13 +61,11 @@ public class DocumentController {
     }
 
 
-
-
     @GetMapping("/document/{id}")
-    public ResponseEntity<Document> getDocument(@PathVariable(value = "id" ) Long id){
+    public ResponseEntity<Document> getDocument(@PathVariable(value = "id") Long id) {
         Document document = this.documentRepository.findById(id).orElseThrow(
-                ()-> new ResourceNotFoundException("Document not found"));
-        return  ResponseEntity.ok().body(document);
+                () -> new ResourceNotFoundException("Document not found"));
+        return ResponseEntity.ok().body(document);
     }
 
     @GetMapping("/document")
@@ -75,20 +75,16 @@ public class DocumentController {
     }
 
 
-
-
-
-
     @GetMapping("/document/download/{id}")
-    public ResponseEntity<InputStreamResource> downloadDocument(@PathVariable(value="id") Long id) throws FileNotFoundException {
+    public ResponseEntity<InputStreamResource> downloadDocument(@PathVariable(value = "id") Long id) throws FileNotFoundException {
         //TODO: throw exception hvis .orElse(null)
         //TODO: navne filen med sangtittel og artist, hvis dette er satt, ellers bruke originalFilename.
-
+        System.out.println("USING LOCAL API!");
         Document document = documentRepository.findById(id).orElse(null);
         assert document != null;
 
-        String originalFilename= document.getFilename();
-        File file = new File(UPLOAD_FOLDER+document.getId()+".pdf");
+        String originalFilename = document.getFilename();
+        File file = new File(UPLOAD_FOLDER + document.getId() + ".pdf");
         InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
 
         return ResponseEntity.ok()
@@ -97,12 +93,6 @@ public class DocumentController {
                 .contentLength(file.length())
                 .body(resource);
     }
-
-
-
-
-
-
 
 
 }

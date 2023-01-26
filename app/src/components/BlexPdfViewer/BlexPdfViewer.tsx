@@ -12,6 +12,8 @@ interface Props {
 export const BlexPdfViewer: React.FC<Props> = ({id}) => {
 	const [numPages, setNumPages] = useState(-1);
 	const [pageNumber, setPageNumber] = useState(1);
+	//const filepath:string = 'https://api.blex.today/document/download/';
+	const filepath:string = 'http://localhost:8080/document/download/';
 
 interface pages {
 	numPages : number;
@@ -23,7 +25,7 @@ interface pages {
 
 	return (
 		<>
-			<Document file={'https://api.blex.today/document/download/'+id} onLoadSuccess={onDocumentLoadSuccess}>
+			<Document file={filepath+id} onLoadSuccess={onDocumentLoadSuccess}>
 				<Page pageNumber={pageNumber} />
 			</Document>
 			<p>
