@@ -104,7 +104,6 @@ export const NewUser: React.FC<Props> = ({ onRegister }) => {
 		}
 	};
 
-// TODO: Fix spacing of form!! And also responsive for mobile
 	return (
 		<>
 			<form className="flex flex-col gap-4 md:w-2/4 md:m-auto" onSubmit={handleSubmit}>
