@@ -96,7 +96,6 @@ export const NewUser: React.FC<Props> = ({ onRegister }) => {
 						emailErrorMsg?.classList.add("hide");
 						emailInput?.classList.remove("border-red-500");
 					}
-
 				}
 			}
 		} else {
