@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Document, Page } from 'react-pdf/dist/esm/entry.vite';
+import {Button} from "flowbite-react";
 
 
 
@@ -30,6 +31,9 @@ export const BlexPdfViewer: React.FC<Props> = ({id}) => {
 					Page {pageNumber} of {numPages}
 				</p>
 			</div>
+			<a href={filepath+id}>
+			<Button color="success">DOWNLOAD</Button>
+		</a>
 		</>
 	)
 }
