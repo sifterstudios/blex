@@ -76,11 +76,10 @@ export const BlexUploader: React.FC = () => {
 
         if (err.response && err.response.data && err.response.data.message) {
           setMessage(err.response.data.message);
-        } else {
-          setFormAlert({...formAlert,type:"Something went wrong!", message:"Could not upload the file!"});
-        }
+          setFormAlert({...formAlert,type:"Something went wrong!", message:err.response.data.message});
+            alertMsgContainer?.classList.remove("hide");
+        } else
         setFile(undefined);
-        alertMsgContainer?.classList.remove("hide");
       });
   };
 
