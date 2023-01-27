@@ -27,7 +27,6 @@ export const Search = () => {
 		axios.get(`http://localhost:8080/document/${id}`);
 	  }
 
-  const [query, setQuery] = React.useState('')
   const [results, setResults] = React.useState<Blekk[]>([])
 
   const cache = localStorage.getItem('pdfList');
@@ -36,12 +35,10 @@ export const Search = () => {
   const noResultMsg = document.getElementById("noResultMsg");
   const tableHead = document.getElementById("tableHead");
 
-    const log = () => {
+    const search = (query:string) => {
         noResultMsg?.classList.add("hide");
         tableHead?.classList.remove("hide");
         setResults([]);
-        console.log(results)
-        console.log("Query: " + query);
 
         let captured: Blekk[] = []
         for (let i = 0; i < cacheArray.length; i++) {
@@ -62,12 +59,9 @@ export const Search = () => {
         setResults([...captured] )
 
         if (captured.length < 1) {
-          console.log("No results found")
             noResultMsg?.classList.remove("hide");
             tableHead?.classList.add("hide");
         }
-
-    console.log("ResultArray: "+results);
     }
 
 
@@ -80,9 +74,8 @@ export const Search = () => {
               placeholder="Search for blex!"
               required={true}
               sizing="lg"
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => search(e.target.value)}
           />
-          <Button onClick={log}>Search</Button>
             <p id="noResultMsg" className="italic hide dark:text-white">Sorry, no blex match this search...how about making and adding it?!</p>
         </div>
         <Table
@@ -120,7 +113,6 @@ export const Search = () => {
                                         stars here
                                     </Table.Cell>
                                 </Table.Row>
-
                         )})}
                     </Table.Body>
                 </Table>
