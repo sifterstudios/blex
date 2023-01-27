@@ -5,8 +5,8 @@ import {BlexPdfViewer} from "../../components/BlexPdfViewer/BlexPdfViewer";
 function Item() {
     const { id } = useParams();
     return (
-        <div>
-            <h1>OESUHTOESTNH</h1>
+        <div >
+            <h1>PDF-viewer</h1>
             {<BlexPdfViewer id={parseInt(id as string)}/>}
         </div>
     );
