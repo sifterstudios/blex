@@ -24,16 +24,13 @@ import java.util.Map;
 public class DocumentController {
     private final DocumentRepository documentRepository;
 
-    // UPLOAD_FOLDER = C:/files/
     private final String UPLOAD_FOLDER;
 
 
 
     public DocumentController(DocumentRepository documentRepository) {
         this.documentRepository = documentRepository;
-        //String home = System.getProperty("user.home", "home/sifter/");
-        //UPLOAD_FOLDER = "home/sifter/files/";
-        UPLOAD_FOLDER = "C:/files/";
+        UPLOAD_FOLDER = "home/sifter/files/";
     }
 
 
@@ -44,7 +41,7 @@ public class DocumentController {
                                    @RequestParam(defaultValue = "") String artist,
                                    @RequestParam(defaultValue = "") String type) throws IOException {
 
-        //TODO: funksjon som setter document user_id fra innlogget user til document table i database.
+        //TODO: function that sets document user_id from logged in user to document table in database.
 
         Document document = new Document();
         document.setSongtitle(song);
@@ -82,8 +79,8 @@ public class DocumentController {
 
     @GetMapping("/document/download/{id}")
     public ResponseEntity<InputStreamResource> downloadDocument(@PathVariable(value = "id") Long id) throws FileNotFoundException {
-        //TODO: throw exception hvis .orElse(null)
-        //TODO: navne filen med sangtittel og artist, hvis dette er satt, ellers bruke originalFilename.
+        //TODO: throw exception if .orElse(null)
+        //TODO: name file with song title and artist, if that data is available, if not, use originalFilename
         System.out.println("USING LOCAL API!");
         Document document = documentRepository.findById(id).orElse(null);
         assert document != null;

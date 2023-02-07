@@ -1,12 +1,12 @@
 package com.example.blex.dtos;
 
 public class AuthenticationResponseDTO {
-    private String accessToken;
-    private String tokenType = "Bearer ";
-
     public AuthenticationResponseDTO(String accessToken) {
         this.accessToken = accessToken;
     }
+    private String accessToken;
+    private String tokenType = "Bearer ";
+
 
     public String getAccessToken() {
         return accessToken;
