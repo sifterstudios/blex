@@ -1,5 +1,4 @@
 package com.example.blex.entities;
-
 import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -7,7 +6,6 @@ import java.util.List;
 
 @Entity
 public class Document {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -16,10 +14,8 @@ public class Document {
     private String songtitle;
     private String type; //type blekke, ikke type fil (vi vil vel uansett bare tillate pdf foreløpig?)
 
-
     @CreationTimestamp
     private LocalDateTime uploaded;
-
 
     @OneToMany(mappedBy = "document")
     private List<DocumentStars> documentStars;
@@ -30,20 +26,12 @@ public class Document {
     @OneToMany(mappedBy = "user")
     private List<DocumentDownloads> documentDownloads;
 
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-
     public Document() {
     }
-
-
-
-
-
-
 
     public Long getId() {
         return id;
@@ -92,7 +80,4 @@ public class Document {
     public void setUploaded(LocalDateTime uploaded) {
         this.uploaded = uploaded;
     }
-
-
 }
-

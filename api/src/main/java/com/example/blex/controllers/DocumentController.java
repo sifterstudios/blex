@@ -1,39 +1,28 @@
 package com.example.blex.controllers;
-
-
 import com.example.blex.entities.Document;
 import com.example.blex.exceptions.ResourceNotFoundException;
 import com.example.blex.repositories.DocumentRepository;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class DocumentController {
     private final DocumentRepository documentRepository;
-
     private final String UPLOAD_FOLDER;
-
-
 
     public DocumentController(DocumentRepository documentRepository) {
         this.documentRepository = documentRepository;
         UPLOAD_FOLDER = "home/sifter/files/";
     }
-
-
 
     @PostMapping("/document/upload")
     public Document uploadDocument(@RequestBody MultipartFile file,
@@ -58,7 +47,6 @@ public class DocumentController {
         return document;
     }
 
-
     @GetMapping("/document/{id}")
     public ResponseEntity<Document> getDocument(@PathVariable(value = "id") Long id) {
         Document document = this.documentRepository.findById(id).orElseThrow(
@@ -71,11 +59,6 @@ public class DocumentController {
         List<Document> documents = this.documentRepository.findAll();
         return ResponseEntity.ok().body(documents);
     }
-
-
-
-
-
 
     @GetMapping("/document/download/{id}")
     public ResponseEntity<InputStreamResource> downloadDocument(@PathVariable(value = "id") Long id) throws FileNotFoundException {
@@ -95,12 +78,4 @@ public class DocumentController {
                 .contentLength(file.length())
                 .body(resource);
     }
-
-
-
-
-
-
-
-
 }
