@@ -73,5 +73,4 @@ public class UserController {
         this.userRepository.delete(user);
         return ResponseEntity.ok().build();
     }
-
 }
