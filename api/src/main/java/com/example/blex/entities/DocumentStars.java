@@ -22,8 +22,6 @@ public class DocumentStars {
     @JoinColumn (name="user_id", insertable=false, updatable=false)
     private User user;
 
-
     public DocumentStars() {
     }
-
 }

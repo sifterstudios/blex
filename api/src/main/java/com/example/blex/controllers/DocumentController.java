@@ -1,4 +1,5 @@
 package com.example.blex.controllers;
+
 import com.example.blex.entities.Document;
 import com.example.blex.exceptions.ResourceNotFoundException;
 import com.example.blex.repositories.DocumentRepository;
@@ -30,8 +31,6 @@ public class DocumentController {
                                    @RequestParam(defaultValue = "") String artist,
                                    @RequestParam(defaultValue = "") String type) throws IOException {
 
-        //TODO: function that sets document user_id from logged in user to document table in database.
-
         Document document = new Document();
         document.setSongtitle(song);
         document.setArtist(artist);
@@ -49,8 +48,8 @@ public class DocumentController {
 
     @GetMapping("/document/{id}")
     public ResponseEntity<Document> getDocument(@PathVariable(value = "id") Long id) {
-        Document document = this.documentRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Document not found"));
+        Document document = this.documentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Document not found"));
         return ResponseEntity.ok().body(document);
     }
 
@@ -62,14 +61,12 @@ public class DocumentController {
 
     @GetMapping("/document/download/{id}")
     public ResponseEntity<InputStreamResource> downloadDocument(@PathVariable(value = "id") Long id) throws FileNotFoundException {
-        //TODO: throw exception if .orElse(null)
-        //TODO: name file with song title and artist, if that data is available, if not, use originalFilename
-        System.out.println("USING LOCAL API!");
-        Document document = documentRepository.findById(id).orElse(null);
-        assert document != null;
+        Document document = documentRepository.findById(id).
+                orElseThrow(() -> new ResourceNotFoundException("File not found!"));
 
         String originalFilename = document.getFilename();
         File file = new File(UPLOAD_FOLDER + document.getId() + ".pdf");
+        //TODO: name file with song title and artist, if that data is available, if not, use originalFilename
         InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
 
         return ResponseEntity.ok()
