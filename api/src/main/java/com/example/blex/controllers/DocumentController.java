@@ -18,11 +18,10 @@ import java.util.List;
 @RestController
 public class DocumentController {
     private final DocumentRepository documentRepository;
-    private final String UPLOAD_FOLDER;
+    private final static String UPLOAD_FOLDER = "home/sifter/files/";
 
     public DocumentController(DocumentRepository documentRepository) {
         this.documentRepository = documentRepository;
-        UPLOAD_FOLDER = "home/sifter/files/";
     }
 
     @PostMapping("/document/upload")
@@ -64,15 +63,34 @@ public class DocumentController {
         Document document = documentRepository.findById(id).
                 orElseThrow(() -> new ResourceNotFoundException("File not found!"));
 
-        String originalFilename = document.getFilename();
-        File file = new File(UPLOAD_FOLDER + document.getId() + ".pdf");
-        //TODO: name file with song title and artist, if that data is available, if not, use originalFilename
+        String filename = getFilename(document);
+
+        File file = new File(filename);
         InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + originalFilename)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + filename)
                 .contentType(MediaType.APPLICATION_PDF)
                 .contentLength(file.length())
                 .body(resource);
+    }
+
+    private static String getFilename(Document document) {
+        String songTitle = document.getSongtitle();
+        String artistName = document.getArtist();
+        String originalFilename = document.getFilename();
+        StringBuilder filePath = new StringBuilder();
+
+        filePath.append(UPLOAD_FOLDER);
+
+        if (songTitle.isEmpty() || artistName.isEmpty()) {
+            filePath.append(originalFilename);
+        } else {
+            filePath.append(artistName)
+                    .append(" ")
+                    .append(songTitle);
+        }
+        filePath.append(".pdf");
+        return filePath.toString();
     }
 }
