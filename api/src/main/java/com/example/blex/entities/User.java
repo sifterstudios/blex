@@ -19,19 +19,14 @@ public class User {
 
     @CreationTimestamp
     private LocalDateTime created;
-
     @OneToMany(mappedBy = "user")
     private List<DocumentStars> documentStars;
-
     @OneToMany(mappedBy = "user")
     private List<DocumentViews> documentViews;
-
     @OneToMany(mappedBy = "user")
     private List<DocumentDownloads> documentDownloads;
-
     @OneToMany(mappedBy="user")
     private List<Document> documents;
-
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name="user_role", joinColumns = @JoinColumn(name="user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName = "id"))
@@ -47,8 +42,6 @@ public class User {
         this.password = password;
         this.email = email;
     }
-
-
 
     public Long getId() {
         return id;
@@ -89,6 +82,4 @@ public class User {
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
-
-
 }

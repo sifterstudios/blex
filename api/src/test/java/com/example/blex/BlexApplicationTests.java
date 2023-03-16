@@ -16,6 +16,4 @@ public class BlexApplicationTests {
 	void contextLoads(ApplicationContext context) {
 		assertThat(context).isNotNull();
 	}
-
-
 }

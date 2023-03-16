@@ -21,8 +21,6 @@ public class DocumentDownloads {
     @JoinColumn (name="user_id", insertable=false, updatable=false)
     private User user;
 
-
     public DocumentDownloads() {
     }
-
 }

@@ -1,7 +1,6 @@
 package com.example.blex.entities;
 
 import com.example.blex.entities.idkeyclasses.DocumentStarsKey;
-
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;

@@ -23,8 +23,6 @@ public class DocumentViews {
     @JoinColumn (name="user_id", insertable=false, updatable=false)
     private User user;
 
-
     public DocumentViews() {
     }
-
 }
