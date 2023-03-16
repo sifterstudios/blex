@@ -31,7 +31,7 @@ public class DocumentController {
                                    @RequestParam(defaultValue = "") String type) throws IOException {
 
         Document document = new Document();
-        document.setSongtitle(song);
+        document.setSongTitle(song);
         document.setArtist(artist);
         document.setType(type);
         document.setFilename(file.getOriginalFilename());
@@ -76,7 +76,7 @@ public class DocumentController {
     }
 
     private static String getFilename(Document document) {
-        String songTitle = document.getSongtitle();
+        String songTitle = document.getSongTitle();
         String artistName = document.getArtist();
         String originalFilename = document.getFilename();
         StringBuilder filePath = new StringBuilder();

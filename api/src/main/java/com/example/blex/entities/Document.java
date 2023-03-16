@@ -11,8 +11,8 @@ public class Document {
     private Long id;
     private String filename;
     private String artist;
-    private String songtitle;
-    private String type; //type blekke, ikke type fil (vi vil vel uansett bare tillate pdf foreløpig?)
+    private String songTitle;
+    private String type;
 
     @CreationTimestamp
     private LocalDateTime uploaded;
@@ -57,12 +57,12 @@ public class Document {
         this.artist = artist;
     }
 
-    public String getSongtitle() {
-        return songtitle;
+    public String getSongTitle() {
+        return songTitle;
     }
 
-    public void setSongtitle(String songtitle) {
-        this.songtitle = songtitle;
+    public void setSongTitle(String songTitle) {
+        this.songTitle = songTitle;
     }
 
     public String getType() {
