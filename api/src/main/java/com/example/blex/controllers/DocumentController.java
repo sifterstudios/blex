@@ -1,47 +1,34 @@
 package com.example.blex.controllers;
 
-
 import com.example.blex.entities.Document;
 import com.example.blex.exceptions.ResourceNotFoundException;
 import com.example.blex.repositories.DocumentRepository;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class DocumentController {
     private final DocumentRepository documentRepository;
-
-    private final String UPLOAD_FOLDER;
-
-
+    private final static String UPLOAD_FOLDER = "home/sifter/files/";
 
     public DocumentController(DocumentRepository documentRepository) {
         this.documentRepository = documentRepository;
-        UPLOAD_FOLDER = "home/sifter/files/";
     }
-
-
 
     @PostMapping("/document/upload")
     public Document uploadDocument(@RequestBody MultipartFile file,
                                    @RequestParam(defaultValue = "") String song,
                                    @RequestParam(defaultValue = "") String artist,
                                    @RequestParam(defaultValue = "") String type) throws IOException {
-
-        //TODO: function that sets document user_id from logged in user to document table in database.
 
         Document document = new Document();
         document.setSongtitle(song);
@@ -58,11 +45,10 @@ public class DocumentController {
         return document;
     }
 
-
     @GetMapping("/document/{id}")
     public ResponseEntity<Document> getDocument(@PathVariable(value = "id") Long id) {
-        Document document = this.documentRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Document not found"));
+        Document document = this.documentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Document not found"));
         return ResponseEntity.ok().body(document);
     }
 
@@ -72,35 +58,39 @@ public class DocumentController {
         return ResponseEntity.ok().body(documents);
     }
 
-
-
-
-
-
     @GetMapping("/document/download/{id}")
     public ResponseEntity<InputStreamResource> downloadDocument(@PathVariable(value = "id") Long id) throws FileNotFoundException {
-        //TODO: throw exception if .orElse(null)
-        //TODO: name file with song title and artist, if that data is available, if not, use originalFilename
-        System.out.println("USING LOCAL API!");
-        Document document = documentRepository.findById(id).orElse(null);
-        assert document != null;
+        Document document = documentRepository.findById(id).
+                orElseThrow(() -> new ResourceNotFoundException("File not found!"));
 
-        String originalFilename = document.getFilename();
-        File file = new File(UPLOAD_FOLDER + document.getId() + ".pdf");
+        String filename = getFilename(document);
+
+        File file = new File(filename);
         InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + originalFilename)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + filename)
                 .contentType(MediaType.APPLICATION_PDF)
                 .contentLength(file.length())
                 .body(resource);
     }
 
+    private static String getFilename(Document document) {
+        String songTitle = document.getSongtitle();
+        String artistName = document.getArtist();
+        String originalFilename = document.getFilename();
+        StringBuilder filePath = new StringBuilder();
 
+        filePath.append(UPLOAD_FOLDER);
 
-
-
-
-
-
+        if (songTitle.isEmpty() || artistName.isEmpty()) {
+            filePath.append(originalFilename);
+        } else {
+            filePath.append(artistName)
+                    .append(" ")
+                    .append(songTitle);
+        }
+        filePath.append(".pdf");
+        return filePath.toString();
+    }
 }

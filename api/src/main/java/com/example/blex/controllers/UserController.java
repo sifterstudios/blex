@@ -6,7 +6,6 @@ import com.example.blex.exceptions.ResourceNotFoundException;
 import com.example.blex.exceptions.UserAlreadyExistsException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -21,13 +20,13 @@ public class UserController {
     @PostMapping("/user/save")
     public User saveUser(@RequestBody User user){
         List<User> users= userRepository.findAll();
-        for (int i = 0; i < users.size(); i++) {
-            if (user.getEmail() == users.get(i).getEmail()) {
+        for (User value : users) {
+            if (user.getEmail() == value.getEmail()) {
                 throw new UserAlreadyExistsException("Email is already in use");
-            } else if(user.getUsername() == users.get(i).getUsername()){
+            } else if (user.getUsername() == value.getUsername()) {
                 throw new UserAlreadyExistsException("Username is taken");
-                }
             }
+        }
                 return this.userRepository.save(user);
         }
 
@@ -52,7 +51,7 @@ public class UserController {
     }
 
     @PutMapping("user/{id}")
-    public User updateUser(@RequestBody User newUser, @PathVariable(value = "id") Long id){
+    public User updateUser(@RequestBody User newUser, @PathVariable(value = "id") Long id) {
         return this.userRepository.findById(id)
                 .map(user -> {
                     user.setUsername(newUser.getUsername());
@@ -60,7 +59,7 @@ public class UserController {
                     user.setPassword(newUser.getPassword());
                     return this.userRepository.save(user);
                 })
-                .orElseGet(()->{
+                .orElseGet(() -> {
                     newUser.setId(id);
                     return this.userRepository.save(newUser);
                 });
@@ -68,10 +67,10 @@ public class UserController {
 
     @DeleteMapping("user/{id}")
     public ResponseEntity<Void> removeUser(@PathVariable(value = "id") Long id){
-        User user =this.userRepository.findById(id).orElseThrow(
-                ()-> new ResourceNotFoundException("User not found"+id));
+        User user = this.userRepository
+                .findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("User not found"+id));
         this.userRepository.delete(user);
         return ResponseEntity.ok().build();
     }
-
 }

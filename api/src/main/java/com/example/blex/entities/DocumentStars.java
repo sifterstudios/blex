@@ -1,7 +1,6 @@
 package com.example.blex.entities;
 
 import com.example.blex.entities.idkeyclasses.DocumentStarsKey;
-
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -22,8 +21,6 @@ public class DocumentStars {
     @JoinColumn (name="user_id", insertable=false, updatable=false)
     private User user;
 
-
     public DocumentStars() {
     }
-
 }

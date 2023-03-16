@@ -9,8 +9,6 @@ public class DocumentStarsKey implements Serializable {
     private Long user_id;
     private Long document_id;
 
-
     public DocumentStarsKey() {
     }
-
 }

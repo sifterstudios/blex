@@ -9,8 +9,6 @@ public class DocumentViewsKey implements Serializable {
     private Long user_id;
     private Long document_id;
 
-
     public DocumentViewsKey() {
     }
-
 }

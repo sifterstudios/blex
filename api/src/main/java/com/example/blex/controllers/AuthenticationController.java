@@ -19,18 +19,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.Collections;
 
 @RestController
 public class AuthenticationController {
 
-    private AuthenticationManager authenticationManager;
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
-    private PasswordEncoder passwordEncoder;
-    private JWTGenerator jwtGenerator;
-
+    private final AuthenticationManager authenticationManager;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JWTGenerator jwtGenerator;
 
     @Autowired
     public AuthenticationController(AuthenticationManager authenticationManager,
@@ -45,7 +43,6 @@ public class AuthenticationController {
         this.jwtGenerator = jwtGenerator;
     }
 
-
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody RegisterDTO registerDto) {
         if(userRepository.existsByUsername(registerDto.getUsername())) {
@@ -59,6 +56,7 @@ public class AuthenticationController {
         user.setUsername(registerDto.getUsername());
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
         user.setEmail(registerDto.getEmail());
+
         Role roles = roleRepository.findOptionalByRole("USER").get();
         user.setRoles(Collections.singletonList(roles));
         userRepository.save(user);
@@ -76,6 +74,4 @@ public class AuthenticationController {
         String token = jwtGenerator.generateToken(authentication);
         return new ResponseEntity<>(new AuthenticationResponseDTO(token), HttpStatus.ACCEPTED);
     }
-
-
 }

@@ -9,5 +9,4 @@ public class BlexApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BlexApplication.class, args);
 	}
-
 }
