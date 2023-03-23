@@ -1,7 +1,7 @@
 import React from 'react'
 import './AddButton.css'
 
-//Needs work to dissapear on mouse leave downwards
+// Needs work to disappear on mouse leave downwards
 export const AddButton = () => {
     const tooltip = document.getElementById("tooltip-bottom" );
     const addBtn = document.getElementById("addBtn" );

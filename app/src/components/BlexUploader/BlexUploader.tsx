@@ -4,16 +4,12 @@ import UploadService from "../../services/FileUploadService";
 import "./BlexUploader.css";
 import FormAlert from "../alerts/FormAlert";
 
-
-
 export const BlexUploader: React.FC = () => {
-
   useEffect(() => {
     UploadService.getFiles().then((response) => {
       setFileInfos(response.data);
     });
   }, []);
-
 
   const [song, setSong] = useState('');
   const [artist, setArtist] = useState('');
@@ -25,7 +21,6 @@ export const BlexUploader: React.FC = () => {
   const alertMsgContainer = document.getElementById("alertMsg")
   const [validated, setValidated] = useState(false);
   const [formAlert, setFormAlert] = useState({type:"Whoops..",message:"",classes:"flex p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"});
-
 
   const selectFile = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = event.target;
